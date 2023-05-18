@@ -12,12 +12,7 @@
         :bullets="false"
         :breakpoints="{ 800: { visibleSlides: 2, slideMultiple: 2 } }"
       >
-        <vueper-slide
-          v-for="(slide, i) in slides"
-          :key="i"
-          :image="slide.image"
-        >
-        </vueper-slide>
+        <vueper-slide v-for="(slide, i) in slides" :key="i" :image="slide.image"> </vueper-slide>
         <!-- <vueper-slide
           v-for="i in 10"
           :key="i"
@@ -62,9 +57,5 @@ export default {
   margin: 0 30px;
   margin-bottom: 40px;
   /*여기서부터없애면됨 */
-  padding: 40px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 20px 0 rgba(76, 87, 125, 0.02);
 }
 </style>

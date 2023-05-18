@@ -18,7 +18,8 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #daf5ff;
+  /* background: #daf5ff; */
+  /* background: #fbf9f6; */
 }
 
 nav {

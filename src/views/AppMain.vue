@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <nav-bar></nav-bar>
-    <plan-create-bar />
+    <plan-create />
     <main-attraction />
     <main-festival />
   </div>
@@ -9,12 +9,12 @@
 
 <script>
 import NavBar from "@/components/NavBar.vue";
-import PlanCreateBar from "@/components/PlanCreateBar.vue";
 import MainAttraction from "@/components/MainAttraction.vue";
 import MainFestival from "@/components/MainFestival.vue";
+import PlanCreate from "@/components/PlanCreate.vue";
 export default {
   name: "AppMain",
-  components: { NavBar, PlanCreateBar, MainAttraction, MainFestival },
+  components: { NavBar, MainAttraction, MainFestival, PlanCreate },
   data() {
     return {
       message: "",

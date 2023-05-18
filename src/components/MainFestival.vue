@@ -57,9 +57,9 @@ export default {
   margin: 0 30px;
   margin-bottom: 20px;
   /*여기서부터없애면됨 */
-  padding: 40px;
+  /* padding: 40px;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0 0 20px 0 rgba(76, 87, 125, 0.02);
+  box-shadow: 0 0 20px 0 rgba(76, 87, 125, 0.02); */
 }
 </style>
