@@ -32,7 +32,7 @@ export default {
   background-color: #b0daff;
   height: 600px;
   position: absolute;
-  width: 100vw;
+  width: 100%;
   z-index: -1;
 }
 input::placeholder {

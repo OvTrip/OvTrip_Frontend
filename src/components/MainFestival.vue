@@ -11,12 +11,13 @@
         :slide-ratio="1 / 4"
         :dragging-distance="200"
         :bullets="false"
+        :touchable="false"
         :breakpoints="{ 800: { visibleSlides: 2, slideMultiple: 2 } }"
       >
-        <vueper-slide v-for="i in 8" :key="i">
+        <vueper-slide v-for="slide in slides" :key="slide">
           <template #content>
             <div class="vueperslide__content-wrapper">
-              <main-attraction-item></main-attraction-item>
+              <main-attraction-item :images="slide"></main-attraction-item>
             </div>
           </template>
         </vueper-slide>
@@ -35,9 +36,11 @@ export default {
   components: { VueperSlides, VueperSlide, MainFestivalSearchBar, MainAttractionItem },
   data: () => ({
     slides: [
-      //   { image: require("@/assets/images/el-teide-volcano-spain.jpg") },
-      //   { image: require("@/assets/images/chernobyl-ukraine.jpg") },
-      //   { image: require("@/assets/images/crater-lake-oregon-usa.jpg") },
+      { image: require("@/assets/images/seoul.jpg") },
+      { image: require("@/assets/images/jeju.jpg") },
+      { image: require("@/assets/images/busan.jpg") },
+      { image: require("@/assets/images/seoul2.jpg") },
+      { image: require("@/assets/images/seoul3.jpg") },
     ],
   }),
   created() {},

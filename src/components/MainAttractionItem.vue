@@ -41,6 +41,7 @@ export default {
   border-radius: 0.65rem;
   /* box-shadow: 0 0.5rem 1.5rem 0.5rem rgba(0, 0, 0, 0.075) !important; */
   margin: 0px 10px;
+  cursor: pointer;
 }
 
 .card > .card-header {

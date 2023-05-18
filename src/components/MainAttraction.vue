@@ -10,6 +10,7 @@
         :slide-ratio="1 / 4"
         :dragging-distance="200"
         :bullets="false"
+        :touchable="false"
         :breakpoints="{ 800: { visibleSlides: 2, slideMultiple: 2 } }"
       >
         <vueper-slide v-for="slide in slides" :key="slide">

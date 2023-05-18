@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <h1>ovtrip.✈️</h1>
+    <img src="@/assets/images/logo-black.png" alt="" />
     <nav-bar-item></nav-bar-item>
   </div>
 </template>
@@ -31,5 +31,10 @@ export default {
   box-sizing: border-box;
   padding: 0px 30px;
   margin: 0px 0px 0px 10px;
+}
+
+img {
+  height: 40px;
+  padding: 10px;
 }
 </style>
