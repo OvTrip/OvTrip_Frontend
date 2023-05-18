@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "FestivalSearchBar",
+  name: "MainFestivalSearchBar",
   components: {},
   data() {
     return {

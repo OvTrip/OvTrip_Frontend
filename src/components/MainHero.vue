@@ -9,60 +9,15 @@
               <span class="typed-words">Maui.</span
               ><span class="typed-cursor typed-cursor--blink">|</span>
             </h1>
-
-            <div class="row">
-              <div class="col-12">
-                <form class="form">
-                  <div class="row mb-2">
-                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
-                      <select name="" id="" class="form-control custom-select">
-                        <option value="">Destination</option>
-                        <option value="">Peru</option>
-                        <option value="">Japan</option>
-                        <option value="">Thailand</option>
-                        <option value="">Brazil</option>
-                        <option value="">United States</option>
-                        <option value="">Israel</option>
-                        <option value="">China</option>
-                        <option value="">Russia</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-5">
-                      <input type="text" class="form-control" name="daterange" />
-                    </div>
-                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-                      <input type="text" class="form-control" placeholder="# of People" />
-                    </div>
-                  </div>
-                  <div class="row align-items-center">
-                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
-                      <input type="submit" class="btn btn-primary btn-block" value="Search" />
-                    </div>
-                    <div class="col-lg-8">
-                      <label class="control control--checkbox mt-3">
-                        <span class="caption">Save this search</span>
-                        <input type="checkbox" checked="checked" />
-                        <div class="control__indicator"></div>
-                      </label>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
           </div>
         </div>
         <div class="col-lg-5">
           <div class="slides">
-            <img
-              src="https://themewagon.github.io/tour/images/hero-slider-2.jpg"
-              alt="Image"
-              class="img-fluid"
-              data-id="1"
-            />
-            <img src="images/hero-slider-2.jpg" alt="Image" class="img-fluid" data-id="2" />
-            <img src="images/hero-slider-3.jpg" alt="Image" class="img-fluid" data-id="3" />
-            <img src="images/hero-slider-4.jpg" alt="Image" class="img-fluid active" data-id="4" />
-            <img src="images/hero-slider-5.jpg" alt="Image" class="img-fluid" data-id="5" />
+            <img src="@/assets/images/busan.jpg" alt="Image" class="img-fluid" data-id="1" />
+            <img src="@/assets/images/busan.jpg" alt="Image" class="img-fluid" data-id="2" />
+            <img src="@/assets/images/busan.jpg" alt="Image" class="img-fluid" data-id="3" />
+            <img src="@/assets/images/busan.jpg" alt="Image" class="img-fluid active" data-id="4" />
+            <img src="@/assets/images/busan.jpg" alt="Image" class="img-fluid" data-id="5" />
           </div>
         </div>
       </div>
@@ -84,4 +39,70 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.hero {
+  padding: 7rem 0 10rem 0;
+  background: #6998ab;
+  margin-bottom: 100px;
+}
+.hero.hero-inner {
+  padding: 9rem 0 7rem 0;
+  margin-bottom: auto;
+  background: #1a374d;
+}
+.hero h1 {
+  color: #ffffff;
+  font-size: 60px;
+}
+@media (max-width: 991.98px) {
+  .hero h1 {
+    font-size: 45px;
+  }
+}
+.hero h1 .typed-words {
+  position: relative;
+}
+.hero h1 .typed-words:before {
+  position: absolute;
+  height: 7px;
+  background-color: #b1d0e0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+}
+.hero .intro-wrap {
+  position: relative;
+  z-index: 1;
+}
+.hero .slides {
+  background: #ffffff;
+  max-width: 800px;
+  left: -100px;
+  z-index: 0;
+  position: relative;
+  border-radius: 200px;
+  -webkit-box-shadow: 0 25px 50px -10px rgba(26, 55, 77, 0.4);
+  box-shadow: 0 25px 50px -10px rgba(26, 55, 77, 0.4);
+  height: 608px;
+  margin-bottom: -200px;
+}
+@media (max-width: 991.98px) {
+  .hero .slides {
+    left: 0;
+  }
+}
+.hero .slides img {
+  position: absolute;
+  border-radius: 200px;
+  opacity: 0;
+  -webkit-transition: 4s opacity ease;
+  -o-transition: 4s opacity ease;
+  transition: 4s opacity ease;
+  background: #ffffff;
+}
+.hero .slides img.active {
+  opacity: 1;
+  z-index: 1;
+}
+</style>

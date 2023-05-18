@@ -1,7 +1,7 @@
 <template>
   <div class="slider-container">
     <div class="title">축제 정보</div>
-    <festival-search-bar></festival-search-bar>
+    <main-festival-search-bar></main-festival-search-bar>
     <div class="image-slider">
       <vueper-slides
         class="no-shadow"
@@ -28,11 +28,11 @@
 <script>
 import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
-import FestivalSearchBar from "./FestivalSearchBar.vue";
+import MainFestivalSearchBar from "./MainFestivalSearchBar.vue";
 import MainAttractionItem from "./MainAttractionItem.vue";
 export default {
   name: "MainFestival",
-  components: { VueperSlides, VueperSlide, FestivalSearchBar, MainAttractionItem },
+  components: { VueperSlides, VueperSlide, MainFestivalSearchBar, MainAttractionItem },
   data: () => ({
     slides: [
       //   { image: require("@/assets/images/el-teide-volcano-spain.jpg") },

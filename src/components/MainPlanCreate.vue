@@ -55,7 +55,7 @@
 
 <script>
 export default {
-  name: "PlanCreate",
+  name: "MainPlanCreate",
   components: {},
   data() {
     return {
