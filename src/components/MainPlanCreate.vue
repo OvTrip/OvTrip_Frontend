@@ -7,7 +7,7 @@
           <div class="col-md-3">
             <div class="form-group">
               <span class="form-label">Destination</span>
-              <input class="form-control" type="text" placeholder="Country, ZIP, city..." />
+              <input class="form-control" type="text" placeholder="여행할 도시를 입력해주세요" />
               <span class="after"></span>
             </div>
           </div>
@@ -42,9 +42,7 @@
           </div>
           <div class="col-md-3">
             <div class="form-btn">
-              <button class="submit-btn" @click="$router.push('plan')">
-                Check availability
-              </button>
+              <button class="submit-btn" @click="$router.push('plan')">Check availability</button>
             </div>
           </div>
         </div>
@@ -55,7 +53,7 @@
 
 <script>
 export default {
-  name: "PlanCreate",
+  name: "MainPlanCreate",
   components: {},
   data() {
     return {
@@ -186,11 +184,15 @@ form {
   border-radius: 2px;
   width: 100%;
   height: 75px;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 900;
+  font-family: "Pretendard";
   /* color: #fff; */
 }
 
+.submit-btn {
+  cursor: pointer;
+}
 .booking-form .form-group:after {
   content: "";
   background: rgba(129, 131, 144, 0.15);

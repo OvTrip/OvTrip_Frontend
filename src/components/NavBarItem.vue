@@ -4,11 +4,7 @@
       <font-awesome-icon icon="fa-solid fa-magnifying-glass" size="xl" />
     </button>
     <button type="button" class="btn">
-      <font-awesome-icon
-        icon="fa-solid fa-user"
-        style="color: #000000"
-        size="xl"
-      />
+      <font-awesome-icon icon="fa-solid fa-user" style="color: #000000" size="xl" />
     </button>
     <button type="button" class="btn">
       <font-awesome-icon icon="fa-solid fa-bell" size="xl" />

@@ -1,87 +1,140 @@
 <template>
-  <div class="hero">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-7">
-          <div class="intro-wrap">
-            <h1 class="mb-5">
-              <span class="d-block">Let's Enjoy Your</span> Trip In
-              <span class="typed-words">Maui.</span
-              ><span class="typed-cursor typed-cursor--blink">|</span>
-            </h1>
-
-            <div class="row">
-              <div class="col-12">
-                <form class="form">
-                  <div class="row mb-2">
-                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
-                      <select name="" id="" class="form-control custom-select">
-                        <option value="">Destination</option>
-                        <option value="">Peru</option>
-                        <option value="">Japan</option>
-                        <option value="">Thailand</option>
-                        <option value="">Brazil</option>
-                        <option value="">United States</option>
-                        <option value="">Israel</option>
-                        <option value="">China</option>
-                        <option value="">Russia</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-5">
-                      <input type="text" class="form-control" name="daterange" />
-                    </div>
-                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-                      <input type="text" class="form-control" placeholder="# of People" />
-                    </div>
-                  </div>
-                  <div class="row align-items-center">
-                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
-                      <input type="submit" class="btn btn-primary btn-block" value="Search" />
-                    </div>
-                    <div class="col-lg-8">
-                      <label class="control control--checkbox mt-3">
-                        <span class="caption">Save this search</span>
-                        <input type="checkbox" checked="checked" />
-                        <div class="control__indicator"></div>
-                      </label>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-5">
-          <div class="slides">
-            <img
-              src="https://themewagon.github.io/tour/images/hero-slider-2.jpg"
-              alt="Image"
-              class="img-fluid"
-              data-id="1"
-            />
-            <img src="images/hero-slider-2.jpg" alt="Image" class="img-fluid" data-id="2" />
-            <img src="images/hero-slider-3.jpg" alt="Image" class="img-fluid" data-id="3" />
-            <img src="images/hero-slider-4.jpg" alt="Image" class="img-fluid active" data-id="4" />
-            <img src="images/hero-slider-5.jpg" alt="Image" class="img-fluid" data-id="5" />
-          </div>
-        </div>
-      </div>
+  <div style="width: 100%; height: 600px; display: flex; align-items: center">
+    <div class="title">알록달록한 봄 <br />여행을 떠나요💙</div>
+    <div id="wrap">
+      <ul>
+        <li v-for="(slide, index) in slides" :key="index" :class="{ on: index === currentIndex }">
+          <img :src="slide.image" :alt="index" />
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
+let timer = null;
+const AUTO_INTERVAL = 2000;
+
 export default {
   name: "MainHero",
   components: {},
   data() {
     return {
-      message: "",
+      slides: [
+        { image: require("@/assets/images/seoul.jpg") },
+        { image: require("@/assets/images/jeju.jpg") },
+        { image: require("@/assets/images/busan.jpg") },
+        { image: require("@/assets/images/seoul2.jpg") },
+        { image: require("@/assets/images/seoul3.jpg") },
+      ],
+      currentIndex: 0,
     };
   },
-  created() {},
-  methods: {},
+  methods: {
+    setAutoRoll() {
+      let vueSelf = this;
+      timer = setInterval(function () {
+        vueSelf.addIndex();
+      }, AUTO_INTERVAL);
+    },
+    addIndex() {
+      let newIndex = this.currentIndex + 1;
+      this.currentIndex = newIndex === this.slides.length ? 0 : newIndex;
+    },
+    roll(direction) {
+      let diff = direction === "prev" ? -1 : 1;
+      this.currentIndex = this.getTargetIndex(diff);
+      if (this.playing) {
+        clearInterval(timer);
+        this.setAutoRoll();
+      }
+    },
+    play() {
+      this.setAutoRoll();
+      this.playing = true;
+    },
+    pause() {
+      clearInterval(timer);
+      this.playing = false;
+    },
+    getTargetIndex(diff) {
+      let length = this.slides.length;
+      let index = this.currentIndex + diff;
+      if (index === -1) {
+        return length - 1;
+      }
+      if (index === length) {
+        return 0;
+      }
+      return index;
+    },
+  },
+  created() {
+    this.play();
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+* {
+  box-sizing: border-box;
+}
+.title {
+  width: 40%;
+  float: left;
+  font-size: 40px;
+  font-weight: 700;
+  background-color: transparent;
+  transform: translate(0%, -10%);
+  text-align: left;
+  padding: 120px;
+}
+img {
+  width: 100% !important;
+  height: 100% !important;
+  /* outline: 1px solid white;
+  outline-offset: -1px; */
+  /* border-radius: 200px; */
+  border-top-left-radius: 200px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 200px;
+}
+
+#wrap {
+  width: 60%;
+  /* background-color: blue; */
+  float: left;
+  align-items: center;
+  height: 100%;
+}
+body {
+  background-color: #2c3e50;
+}
+div {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+li {
+  display: none;
+  height: 100%;
+}
+li.on {
+  display: block;
+}
+span {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 0 6px;
+  color: lightgray;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+</style>
