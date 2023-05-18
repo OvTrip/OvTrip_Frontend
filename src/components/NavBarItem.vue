@@ -3,7 +3,7 @@
     <button type="button" class="btn">
       <font-awesome-icon icon="fa-solid fa-magnifying-glass" size="xl" />
     </button>
-    <button type="button" class="btn">
+    <button type="button" class="btn" @click="$router.push({ path: '/login' })">
       <font-awesome-icon icon="fa-solid fa-user" style="color: #000000" size="xl" />
     </button>
     <button type="button" class="btn">
