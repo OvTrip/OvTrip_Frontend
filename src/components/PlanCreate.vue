@@ -42,7 +42,9 @@
           </div>
           <div class="col-md-3">
             <div class="form-btn">
-              <button class="submit-btn">Check availability</button>
+              <button class="submit-btn" @click="$router.push({ path: '/about' })">
+                Check availability
+              </button>
             </div>
           </div>
         </div>
