@@ -1,7 +1,11 @@
 <template>
   <div class="nav">
-    <div id="logo"><a @click="$router.push('/')">ovtrip.✈️</a></div>
-    <div id="navBtnDiv">
+    <div class="logo">
+      <a @click="$router.push('/')"
+        ><img src="@/assets/images/logo-black.png" alt="" height="40px"
+      /></a>
+    </div>
+    <div class="navBtnDiv">
       <button class="glow-on-hover" id="saveBtn" name="saveBtn" type="button">
         <div><font-awesome-icon icon="fa-solid fa-floppy-disk" /></div>
         <div>
@@ -38,10 +42,10 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   margin: 10px 0px;
-  line-height: 50px;
   padding: 0px 100px;
+  align-items: center;
 }
-#logo {
+.logo {
   float: left;
   font-size: 30px;
   font-weight: bold;

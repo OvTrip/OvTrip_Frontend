@@ -1,14 +1,16 @@
 <template>
   <div class="editor">
     <plan-nav></plan-nav>
+    <plan-title></plan-title>
   </div>
 </template>
 
 <script>
 import PlanNav from "./PlanNav.vue";
+import PlanTitle from "./PlanTitle.vue";
 export default {
   name: "PlanEditor",
-  components: { PlanNav },
+  components: { PlanNav, PlanTitle },
   data() {
     return {
       message: "",
