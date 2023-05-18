@@ -30,6 +30,6 @@ export default {
   z-index: 3;
   box-sizing: border-box;
   padding: 0px 30px;
-  margin: 10px 0px;
+  margin: 0px 0px 0px 10px;
 }
 </style>

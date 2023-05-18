@@ -1,22 +1,17 @@
 <template>
   <div class="container">
-    <nav-bar></nav-bar>
-    <main-hero></main-hero>
-    <main-plan-create />
-    <main-attraction />
-    <main-festival />
+    <div class="background"></div>
+    <the-nav-bar></the-nav-bar>
+    <main-container />
   </div>
 </template>
 
 <script>
-import NavBar from "@/components/NavBar.vue";
-import MainAttraction from "@/components/MainAttraction.vue";
-import MainFestival from "@/components/MainFestival.vue";
-import MainPlanCreate from "@/components/MainPlanCreate.vue";
-import MainHero from "@/components/MainHero.vue";
+import MainContainer from "@/components/MainContainer.vue";
+import TheNavBar from "@/components/TheNavBar.vue";
 export default {
   name: "AppMain",
-  components: { NavBar, MainAttraction, MainFestival, MainPlanCreate, MainHero },
+  components: { MainContainer, TheNavBar },
   data() {
     return {
       message: "",
@@ -28,18 +23,18 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  width: 80%;
-  margin: 0 auto;
-  /* padding: 0 240px; */
-  display: flex;
-  flex-direction: column !important;
-}
-
 * {
   font-family: "Pretendard";
 }
 
+.background {
+  background-color: #feff86;
+  background-color: #b0daff;
+  height: 600px;
+  position: absolute;
+  width: 100vw;
+  z-index: -1;
+}
 input::placeholder {
   font-family: "Pretendard";
 }

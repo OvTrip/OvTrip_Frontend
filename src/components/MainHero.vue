@@ -1,108 +1,140 @@
 <template>
-  <div class="hero">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-7">
-          <div class="intro-wrap">
-            <h1 class="mb-5">
-              <span class="d-block">Let's Enjoy Your</span> Trip In
-              <span class="typed-words">Maui.</span
-              ><span class="typed-cursor typed-cursor--blink">|</span>
-            </h1>
-          </div>
-        </div>
-        <div class="col-lg-5">
-          <div class="slides">
-            <img src="@/assets/images/busan.jpg" alt="Image" class="img-fluid" data-id="1" />
-            <img src="@/assets/images/busan.jpg" alt="Image" class="img-fluid" data-id="2" />
-            <img src="@/assets/images/busan.jpg" alt="Image" class="img-fluid" data-id="3" />
-            <img src="@/assets/images/busan.jpg" alt="Image" class="img-fluid active" data-id="4" />
-            <img src="@/assets/images/busan.jpg" alt="Image" class="img-fluid" data-id="5" />
-          </div>
-        </div>
-      </div>
+  <div style="width: 100%; height: 600px; display: flex; align-items: center">
+    <div class="title">알록달록한 봄 <br />여행을 떠나요💙</div>
+    <div id="wrap">
+      <ul>
+        <li v-for="(slide, index) in slides" :key="index" :class="{ on: index === currentIndex }">
+          <img :src="slide.image" :alt="index" />
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
+let timer = null;
+const AUTO_INTERVAL = 2000;
+
 export default {
   name: "MainHero",
   components: {},
   data() {
     return {
-      message: "",
+      slides: [
+        { image: require("@/assets/images/seoul.jpg") },
+        { image: require("@/assets/images/jeju.jpg") },
+        { image: require("@/assets/images/busan.jpg") },
+        { image: require("@/assets/images/seoul2.jpg") },
+        { image: require("@/assets/images/seoul3.jpg") },
+      ],
+      currentIndex: 0,
     };
   },
-  created() {},
-  methods: {},
+  methods: {
+    setAutoRoll() {
+      let vueSelf = this;
+      timer = setInterval(function () {
+        vueSelf.addIndex();
+      }, AUTO_INTERVAL);
+    },
+    addIndex() {
+      let newIndex = this.currentIndex + 1;
+      this.currentIndex = newIndex === this.slides.length ? 0 : newIndex;
+    },
+    roll(direction) {
+      let diff = direction === "prev" ? -1 : 1;
+      this.currentIndex = this.getTargetIndex(diff);
+      if (this.playing) {
+        clearInterval(timer);
+        this.setAutoRoll();
+      }
+    },
+    play() {
+      this.setAutoRoll();
+      this.playing = true;
+    },
+    pause() {
+      clearInterval(timer);
+      this.playing = false;
+    },
+    getTargetIndex(diff) {
+      let length = this.slides.length;
+      let index = this.currentIndex + diff;
+      if (index === -1) {
+        return length - 1;
+      }
+      if (index === length) {
+        return 0;
+      }
+      return index;
+    },
+  },
+  created() {
+    this.play();
+  },
 };
 </script>
 
 <style scoped>
-.hero {
-  padding: 7rem 0 10rem 0;
-  background: #6998ab;
-  margin-bottom: 100px;
+* {
+  box-sizing: border-box;
 }
-.hero.hero-inner {
-  padding: 9rem 0 7rem 0;
-  margin-bottom: auto;
-  background: #1a374d;
+.title {
+  width: 40%;
+  float: left;
+  font-size: 40px;
+  font-weight: 700;
+  background-color: transparent;
+  transform: translate(0%, -10%);
+  text-align: left;
+  padding: 120px;
 }
-.hero h1 {
-  color: #ffffff;
-  font-size: 60px;
+img {
+  width: 100% !important;
+  height: 100% !important;
+  /* outline: 1px solid white;
+  outline-offset: -1px; */
+  /* border-radius: 200px; */
+  border-top-left-radius: 200px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 200px;
 }
-@media (max-width: 991.98px) {
-  .hero h1 {
-    font-size: 45px;
-  }
+
+#wrap {
+  width: 60%;
+  /* background-color: blue; */
+  float: left;
+  align-items: center;
+  height: 100%;
 }
-.hero h1 .typed-words {
-  position: relative;
+body {
+  background-color: #2c3e50;
 }
-.hero h1 .typed-words:before {
+div {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+li {
+  display: none;
+  height: 100%;
+}
+li.on {
+  display: block;
+}
+span {
   position: absolute;
-  height: 7px;
-  background-color: #b1d0e0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  content: "";
-}
-.hero .intro-wrap {
-  position: relative;
-  z-index: 1;
-}
-.hero .slides {
-  background: #ffffff;
-  max-width: 800px;
-  left: -100px;
-  z-index: 0;
-  position: relative;
-  border-radius: 200px;
-  -webkit-box-shadow: 0 25px 50px -10px rgba(26, 55, 77, 0.4);
-  box-shadow: 0 25px 50px -10px rgba(26, 55, 77, 0.4);
-  height: 608px;
-  margin-bottom: -200px;
-}
-@media (max-width: 991.98px) {
-  .hero .slides {
-    left: 0;
-  }
-}
-.hero .slides img {
-  position: absolute;
-  border-radius: 200px;
-  opacity: 0;
-  -webkit-transition: 4s opacity ease;
-  -o-transition: 4s opacity ease;
-  transition: 4s opacity ease;
-  background: #ffffff;
-}
-.hero .slides img.active {
-  opacity: 1;
-  z-index: 1;
+  top: 16px;
+  left: 16px;
+  padding: 0 6px;
+  color: lightgray;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 </style>
