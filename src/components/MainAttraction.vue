@@ -12,13 +12,13 @@
         :bullets="false"
         :breakpoints="{ 800: { visibleSlides: 2, slideMultiple: 2 } }"
       >
-        <vueper-slide v-for="(slide, i) in slides" :key="i" :image="slide.image"> </vueper-slide>
-        <!-- <vueper-slide
-          v-for="i in 10"
-          :key="i"
-          :title="i.toString()"
-          :style="'background-color: ' + ['#ff5252', '#42b983'][i % 2]"
-        /> -->
+        <vueper-slide v-for="slide in slides" :key="slide">
+          <template #content>
+            <div class="vueperslide__content-wrapper">
+              <main-attraction-item :images="slide"></main-attraction-item>
+            </div>
+          </template>
+        </vueper-slide>
       </vueper-slides>
     </div>
   </div>
@@ -27,10 +27,10 @@
 <script>
 import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
-
+import MainAttractionItem from "./MainAttractionItem.vue";
 export default {
   name: "MainAttraction",
-  components: { VueperSlides, VueperSlide },
+  components: { VueperSlides, VueperSlide, MainAttractionItem },
   data: () => ({
     slides: [
       { image: require("@/assets/images/seoul.jpg") },
