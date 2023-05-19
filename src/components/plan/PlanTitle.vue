@@ -14,6 +14,7 @@
           type="text"
           placeholder="Enter a trip name"
           class="title-input"
+          @input="adjustInputWidth"
         />
       </div>
     </div>
@@ -30,7 +31,16 @@ export default {
     };
   },
   created() {},
-  methods: {},
+  methods: {
+    adjustInputWidth: function (e) {
+      e.target.style.width = e.target.value.length + 1 + "ch";
+
+      //입력 내용을 모두 지우면 다시 placeholder 출력
+      if (e.target.value.length == 0) {
+        e.target.style.width = "15ch";
+      }
+    },
+  },
 };
 </script>
 
@@ -65,6 +75,7 @@ export default {
 
 .title-input-div {
   width: 100%;
+  overflow: hidden;
 }
 
 .title-input {
@@ -76,6 +87,8 @@ export default {
   border: none;
   outline: none; /* 클릭시 테두리 없애기 */
   border-radius: 8px;
+  float: left;
+  width: 15ch; /* placeholder 글자 길이에 맞는 width */
 }
 .title-input:hover,
 :focus {
