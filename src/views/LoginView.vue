@@ -47,10 +47,26 @@
       <div class="sign-up-container">
         <div class="overlay">
           <div class="overlay-panel overlay-right">
+            <img
+              src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Beaming%20Face%20with%20Smiling%20Eyes.png"
+              alt="Beaming Face with Smiling Eyes"
+              width="100"
+              height="100"
+              id="smile"
+            />
             <div id="hello">안녕하세요!</div>
             <div id="desc">가입하고 여행 계획을 작성해보세요!</div>
             <a href="#" class="btn" id="btn-signup">👉 회원 가입 하러가기</a>
-            <img src="@/assets/images/logo-black.png" alt="" id="logo" />
+            <div class="logo">
+              <a href="#" id="logo-label">OVTRIP</a>
+              <img
+                src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Airplane.png"
+                alt="Airplane"
+                width="44"
+                height="44"
+                id="icon"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -73,8 +89,28 @@ export default {
 </script>
 
 <style scoped>
-#logo {
-  margin: 20px;
+#logo-label {
+  height: 30px;
+  line-height: 30px;
+  text-decoration: none;
+  color: black;
+  font-weight: 900;
+  font-size: 24px;
+}
+#icon {
+  width: 30px;
+  height: 30px;
+}
+
+#smile {
+  width: 100px;
+  height: 100px;
+}
+.logo {
+  margin-top: 12px;
+  height: 44px;
+  line-height: 44px;
+  display: flex;
 }
 #hello {
   font-size: 50px;
