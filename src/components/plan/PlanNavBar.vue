@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: "PlanNav",
+  name: "PlanNavBar",
   components: {},
   data() {
     return {

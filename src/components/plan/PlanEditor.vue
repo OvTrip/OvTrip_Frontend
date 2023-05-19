@@ -1,16 +1,18 @@
 <template>
   <div class="editor">
-    <plan-nav></plan-nav>
+    <plan-nav-bar></plan-nav-bar>
+    <plan-side-bar></plan-side-bar>
     <plan-title></plan-title>
   </div>
 </template>
 
 <script>
-import PlanNav from "./PlanNav.vue";
+import PlanNavBar from "./PlanNavBar.vue";
+import PlanSideBar from "@/components/plan/PlanSideBar.vue";
 import PlanTitle from "./PlanTitle.vue";
 export default {
   name: "PlanEditor",
-  components: { PlanNav, PlanTitle },
+  components: { PlanNavBar, PlanTitle, PlanSideBar },
   data() {
     return {
       message: "",

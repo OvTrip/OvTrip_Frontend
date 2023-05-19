@@ -48,7 +48,7 @@ export default {
 .plan-title-container {
   width: calc(100% - 250px);
   float: right;
-  height: 300px;
+  height: 320px;
   position: relative;
 }
 .plan-tilte-cover {
@@ -66,7 +66,7 @@ export default {
   bottom: 0;
   left: 32px;
   right: 32px;
-  height: 160px;
+  height: 180px;
   position: absolute; /* 가장 가까운 상위 position(= plan-title-container)을 기준으로 배치 */
   margin-left: 50px;
   margin-right: 50px;
@@ -75,7 +75,6 @@ export default {
 
 .title-input-div {
   width: 100%;
-  overflow: hidden;
 }
 
 .title-input {
