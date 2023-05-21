@@ -2,17 +2,15 @@
   <div class="editor-content-container">
     <plan-title></plan-title>
     <plan-place-list></plan-place-list>
-    <plan-place-search-bar></plan-place-search-bar>
   </div>
 </template>
 
 <script>
-import PlanPlaceSearchBar from "./PlanPlaceSearchBar.vue";
 import PlanTitle from "./PlanTitle.vue";
 import PlanPlaceList from "./PlanPlaceList.vue";
 export default {
   name: "PlanEditorContent",
-  components: { PlanTitle, PlanPlaceSearchBar, PlanPlaceList },
+  components: { PlanTitle, PlanPlaceList },
   data() {
     return {
       message: "",

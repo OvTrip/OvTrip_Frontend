@@ -2,6 +2,7 @@
   <div class="place-list-container">
     <div class="place-list-div">
       <div id="placeListTitle">방문할 여행지 목록</div>
+      <plan-place-search-bar></plan-place-search-bar>
       <template v-for="(item, index) in placeList">
         <plan-place-list-item :key="index" :item="item"></plan-place-list-item>
       </template>
@@ -11,9 +12,10 @@
 
 <script>
 import PlanPlaceListItem from "./PlanPlaceListItem.vue";
+import PlanPlaceSearchBar from "./PlanPlaceSearchBar.vue";
 export default {
   name: "PlanPlaceList",
-  components: { PlanPlaceListItem },
+  components: { PlanPlaceListItem, PlanPlaceSearchBar },
   data() {
     return {
       placeList: [
