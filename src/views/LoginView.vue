@@ -24,7 +24,7 @@
                 <li><input type="email" placeholder="Email" /></li>
                 <li><input type="password" placeholder="Password" /></li>
                 <li><a class="btn btn-login" href="#">로그인</a></li>
-                <li><a href="#" id="forget-pass">👉 비밀번호를 잊으셨나요?</a></li>
+                <li><a href="/password" id="forget-pass">👉 비밀번호를 잊으셨나요?</a></li>
                 <li id="social-title"><span>소셜 로그인</span></li>
                 <li>
                   <a href="#" class="btn btn-social" id="btn-kakao">

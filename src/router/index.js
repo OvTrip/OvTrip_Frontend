@@ -4,6 +4,7 @@ import HomeView from '../views/AppMain.vue'
 import LoginView from '@/views/LoginView'
 import PlanView from "@/views/AppPlan.vue";
 import SignUpView from "@/views/SignUpView.vue"
+import ForgotPassword from '@/views/ForgotPassword.vue'
 
 
 Vue.use(VueRouter);
@@ -28,6 +29,11 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignUpView
+  },
+  {
+    path: '/password',
+    name: 'password',
+    component: ForgotPassword
   }
 ]
 
