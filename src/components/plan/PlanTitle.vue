@@ -1,12 +1,7 @@
 <template>
   <div class="plan-title-container">
-    <div class="plan-tilte-cover">
-      <img
-        class="plan-title-img"
-        src="@/assets/images/plan-title-cover.jpg"
-        alt=""
-        width="100%"
-      />
+    <div class="plan-tilte-cover-div">
+      <img class="plan-title-img" src="@/assets/images/plan-title-cover.jpg" alt="" width="100%" />
     </div>
     <div class="plan-title-div">
       <div class="title-input-div">
@@ -46,13 +41,12 @@ export default {
 
 <style scoped>
 .plan-title-container {
-  width: calc(100% - 250px);
+  width: 100%;
   float: right;
   height: 320px;
   position: relative;
 }
-.plan-tilte-cover {
-  width: 100%;
+.plan-tilte-cover-div {
   height: 240px;
 }
 .plan-title-img {

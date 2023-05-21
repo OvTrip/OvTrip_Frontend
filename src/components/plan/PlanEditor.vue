@@ -2,17 +2,17 @@
   <div class="editor">
     <plan-nav-bar></plan-nav-bar>
     <plan-side-bar></plan-side-bar>
-    <plan-title></plan-title>
+    <plan-editor-content></plan-editor-content>
   </div>
 </template>
 
 <script>
 import PlanNavBar from "./PlanNavBar.vue";
 import PlanSideBar from "@/components/plan/PlanSideBar.vue";
-import PlanTitle from "./PlanTitle.vue";
+import PlanEditorContent from "./PlanEditorContent.vue";
 export default {
   name: "PlanEditor",
-  components: { PlanNavBar, PlanTitle, PlanSideBar },
+  components: { PlanNavBar, PlanSideBar, PlanEditorContent },
   data() {
     return {
       message: "",

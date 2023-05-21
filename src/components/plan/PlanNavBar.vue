@@ -42,7 +42,7 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   margin: 10px 0px;
-  padding: 0px 100px;
+  padding: 0px 60px;
   align-items: center;
 }
 .logo {

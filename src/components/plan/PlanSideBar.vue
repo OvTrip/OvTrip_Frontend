@@ -7,9 +7,7 @@
       :placeholder="placeholder"
       :clearable="false"
     >
-      <i slot="calendar-icon"
-        ><font-awesome-icon icon="fa-solid fa-calendar-days"
-      /></i>
+      <i slot="calendar-icon"><font-awesome-icon icon="fa-solid fa-calendar-days" /></i>
     </date-picker>
   </div>
 </template>
