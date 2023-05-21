@@ -42,7 +42,6 @@ export default {
 <style scoped>
 .plan-title-container {
   width: 100%;
-  float: right;
   height: 320px;
   position: relative;
 }

@@ -27,6 +27,5 @@ export default {
 .editor-content-container {
   width: calc(100% - 250px);
   float: right;
-  background-color: #f3f4f5;
 }
 </style>
