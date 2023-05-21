@@ -56,7 +56,7 @@
             />
             <div id="hello">안녕하세요!</div>
             <div id="desc">가입하고 여행 계획을 작성해보세요!</div>
-            <a href="#" class="btn" id="btn-signup">👉 회원 가입 하러가기</a>
+            <a href="/signup" class="btn" id="btn-signup">👉 회원 가입 하러가기</a>
             <div class="logo">
               <a href="#" id="logo-label">OVTRIP</a>
               <img
