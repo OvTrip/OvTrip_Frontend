@@ -15,7 +15,7 @@ export default {
   name: "PlanPlaceListItem",
   components: {},
   props: {
-    item: String,
+    item: Object,
   },
   data() {
     return {

@@ -1,7 +1,7 @@
 <template>
   <div class="place-list-container">
-    <div class="place-list-div">
-      <div id="placeListTitle">방문할 여행지 목록</div>
+    <div id="placeListTitle">방문할 여행지 목록</div>
+    <div class="place-list-div" id="menu_wrap">
       <plan-place-search-bar></plan-place-search-bar>
       <template v-for="(item, index) in placeList">
         <plan-place-list-item :key="index" :item="item"></plan-place-list-item>
@@ -33,8 +33,12 @@ export default {
 <style scoped>
 .place-list-container {
   bottom: 0;
+  width: calc(100% - 100px);
+}
+.place-list-div {
 }
 #placeListTitle {
+  text-align: left;
   font-family: "Pretendard";
   font-size: 25px;
   font-weight: 700;
