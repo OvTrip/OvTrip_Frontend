@@ -6,10 +6,19 @@
           <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
         </div>
         <form @submit.prevent="searchPlaces">
-          <input class="search-input" id="keyword" type="text" placeholder="여행지를 추가하세요" />
+          <input
+            class="search-input"
+            id="keyword"
+            type="text"
+            placeholder="여행지를 추가하세요"
+            @input="removeAllChildNods"
+          />
         </form>
       </div>
-      <plan-search-result-list :searchResults="searchResults"></plan-search-result-list>
+      <plan-search-result-list
+        v-model="searchResults"
+        :searchResults="searchResults"
+      ></plan-search-result-list>
       <plan-search-result-pagination :pagination="pagination"></plan-search-result-pagination>
     </div>
   </div>
@@ -30,21 +39,20 @@ export default {
     };
   },
   created() {},
-  mounted() {
-    if (!window.kakao || !window.kakao.maps) {
-      this.loadScript();
-    }
-  },
+  mounted() {},
   methods: {
     ...mapMutations({
       addMarker: "ADD_MARKER",
+      setSearchResults: "SET_SEARCH_RESULTS",
+      setPagination: "SET_PAGINATION",
     }),
-    loadScript() {
-      const script = document.createElement("script");
-      script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?appkey=b485b131434be251ad56744ef70903b7&autoload=false&libraries=services";
-      //html>head 안에 script 추가
-      document.head.appendChild(script);
+    removeAllChildNods(e) {
+      if (e.target.value.length === 0) {
+        // this.setSearchResults(null);
+        // this.setPagination(null);
+        this.searchResults = null;
+        this.pagination = null;
+      }
     },
     searchPlaces() {
       var keyword = document.getElementById("keyword").value;
@@ -64,11 +72,13 @@ export default {
       if (status === kakao.maps.services.Status.OK) {
         // 정상적으로 검색이 완료됐으면
         // 검색 목록과 마커를 표출합니다
+        // this.setSearchResults(data);
         this.searchResults = data;
         // this.displayPlaces(data);
 
         // 페이지 번호를 표출합니다
         // this.displayPagination(pagination);
+        // this.setPagination(pagination);
         this.pagination = pagination;
       } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
         alert("검색 결과가 존재하지 않습니다.");

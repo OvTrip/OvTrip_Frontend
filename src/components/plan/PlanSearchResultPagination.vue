@@ -1,14 +1,16 @@
 <template>
   <div id="pagination">
-    <template v-for="(page, index) in pagination.last">
-      <a
-        href="#"
-        :key="index"
-        :class="{ on: index + 1 === pagination.current }"
-        @click="movePage(index)"
-        >{{ index + 1 }}</a
-      >
-    </template>
+    <div v-if="pagination != null">
+      <template v-for="(page, index) in pagination.last">
+        <a
+          href="#"
+          :key="index"
+          :class="{ on: index + 1 === pagination.current }"
+          @click="movePage(index)"
+          >{{ index + 1 }}</a
+        >
+      </template>
+    </div>
   </div>
 </template>
 
