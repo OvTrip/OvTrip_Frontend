@@ -6,6 +6,7 @@ import PlanView from "@/views/AppPlan.vue"
 import SignUpView from "@/views/SignUpView.vue"
 import ForgotPassword from '@/views/ForgotPassword.vue'
 import LoginCallBack from "@/views/LoginCallBack.vue"
+import AppMypage from '@/views/AppMypage.vue'
 
 Vue.use(VueRouter);
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/oauth/kakao/callback',
     name: 'loginCallBack',
     component: LoginCallBack
+  },
+  {
+    path: '/mypage',
+    name: 'mypage',
+    component: AppMypage
   }
 ]
 

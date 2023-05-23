@@ -11,7 +11,7 @@
           /></a>
           <ul>
             <li id="profile">닉네임님 안녕하세요!</li>
-            <li>My Page</li>
+            <li><a href="/mypage">My Page</a></li>
             <li>Logout</li>
           </ul>
         </li>
@@ -40,6 +40,7 @@ export default {
 <style scoped>
 * {
   font-family: "Pretendard";
+  box-sizing: border-box;
 }
 a {
   text-decoration: none;

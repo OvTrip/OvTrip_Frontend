@@ -21,11 +21,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  background-color: #feff86;
-  background-color: #b0daff;
-  width: 100vw;
-  height: 100vh;
-}
-</style>
+<style scoped></style>
