@@ -15,11 +15,8 @@
           />
         </form>
       </div>
-      <plan-search-result-list
-        v-model="searchResults"
-        :searchResults="searchResults"
-      ></plan-search-result-list>
-      <plan-search-result-pagination :pagination="pagination"></plan-search-result-pagination>
+      <plan-search-result-list></plan-search-result-list>
+      <plan-search-result-pagination></plan-search-result-pagination>
     </div>
   </div>
 </template>
@@ -28,6 +25,8 @@
 import { mapMutations } from "vuex";
 import PlanSearchResultList from "./PlanSearchResultList.vue";
 import PlanSearchResultPagination from "./PlanSearchResultPagination.vue";
+
+const planStore = "planStore";
 export default {
   name: "PlanPlaceSearchBar",
   components: { PlanSearchResultList, PlanSearchResultPagination },
@@ -41,15 +40,13 @@ export default {
   created() {},
   mounted() {},
   methods: {
-    ...mapMutations({
-      addMarker: "ADD_MARKER",
-      setSearchResults: "SET_SEARCH_RESULTS",
-      setPagination: "SET_PAGINATION",
-    }),
+    ...mapMutations(planStore, ["ADD_MARKER", "SET_SEARCH_RESULTS", "SET_PAGINATION"]),
     removeAllChildNods(e) {
       if (e.target.value.length === 0) {
-        this.searchResults = null;
-        this.pagination = null;
+        // this.searchResults = null;
+        this.SET_SEARCH_RESULTS(null);
+        // this.pagination = null;
+        this.SET_PAGINATION(null);
       }
     },
     searchPlaces() {
@@ -70,10 +67,12 @@ export default {
       if (status === kakao.maps.services.Status.OK) {
         // 정상적으로 검색이 완료됐으면
         // 검색 목록과 마커를 표출합니다
-        this.searchResults = data;
+        // this.searchResults = data;
+        this.SET_SEARCH_RESULTS(data);
 
         // 페이지 번호를 표출합니다
-        this.pagination = pagination;
+        // this.pagination = pagination;
+        this.SET_PAGINATION(pagination);
       } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
         alert("검색 결과가 존재하지 않습니다.");
         return;

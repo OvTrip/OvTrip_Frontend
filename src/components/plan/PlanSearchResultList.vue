@@ -12,12 +12,13 @@
 
 <script>
 import PlanSearchResultListItem from "./PlanSearchResultListItem.vue";
-
+import { mapState } from "vuex";
+const planStore = "planStore";
 export default {
   name: "PlanSearchResultList",
   components: { PlanSearchResultListItem },
-  props: {
-    searchResults: Array,
+  computed: {
+    ...mapState(planStore, ["searchResults"]),
   },
   data() {
     return {

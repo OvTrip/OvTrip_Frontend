@@ -5,9 +5,22 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+const planStore = "planStore";
 export default {
   name: "PlanMap",
   components: {},
+  computed: {
+    ...mapState(planStore, ["markers"]),
+  },
+  watch: {
+    markers: {
+      immediate: true,
+      handler(markers) {
+        this.setMarkers(markers);
+      },
+    },
+  },
   data() {
     return {
       map: null,
@@ -20,16 +33,6 @@ export default {
     } else {
       this.loadScript();
     }
-  },
-  computed: {
-    update_marker() {
-      return this.$state.markers;
-    },
-  },
-  watch: {
-    update_marker(markers) {
-      this.setMarkers(markers);
-    },
   },
   methods: {
     loadScript() {
@@ -50,21 +53,12 @@ export default {
         level: 7,
       };
       this.map = new kakao.maps.Map(container, options);
-
-      // this.makeMarker();
     },
     setMarkers(markers) {
-      for (let i = 1; i < markers.length; i++) {
+      for (let i = 0; i < markers.length; i++) {
         markers[i].setMap(this.map);
       }
     },
-    // makeMarker() {
-    //   const initMarkerPos = new window.kakao.maps.LatLng(37.541, 126.986);
-    //   const marker = new window.kakao.maps.Marker({
-    //     position: initMarkerPos,
-    //   });
-    //   marker.setMap(this.map);
-    // },
   },
 };
 </script>

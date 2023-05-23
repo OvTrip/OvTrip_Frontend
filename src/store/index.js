@@ -1,27 +1,14 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import planStore from "@/store/modules/planStore";
 
 Vue.use(Vuex);
 Vue.config.devtools = true;
 
 export default new Vuex.Store({
-  state: {
-    markers: [],
-    searchResults: [],
-    pagination: [],
-  },
+  state: {},
   getters: {},
-  mutations: {
-    ADD_MARKER(state, marker) {
-      state.markers.push(marker);
-    },
-    SET_SEARCH_RESULTS(state, searchResults) {
-      state.searchResults = searchResults;
-    },
-    SET_PAGINATION(state, pagination) {
-      state.pagination = pagination;
-    },
-  },
+  mutations: {},
   actions: {},
-  modules: {},
+  modules: { planStore },
 });

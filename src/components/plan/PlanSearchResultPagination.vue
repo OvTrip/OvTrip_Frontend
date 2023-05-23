@@ -15,13 +15,13 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+const planStore = "planStore";
 export default {
   name: "PlanSearchResultPagination",
   components: {},
-  props: {
-    pagination: {
-      type: Object,
-    },
+  computed: {
+    ...mapState(planStore, ["pagination"]),
   },
   data() {
     return {

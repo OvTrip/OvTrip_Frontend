@@ -14,6 +14,8 @@
 
 <script>
 import { mapMutations } from "vuex";
+const planStore = "planStore";
+
 export default {
   name: "PlanSearchResultListItem",
   components: {},
@@ -32,18 +34,14 @@ export default {
   },
   created() {},
   methods: {
-    ...mapMutations({
-      addMarker: "ADD_MARKER",
-      setSearchResults: "SET_SEARCH_RESULTS",
-      setPagination: "SET_PAGINATION",
-    }),
+    ...mapMutations(planStore, ["ADD_MARKER"]),
     setMarker() {
-      console.log(this.searchResult);
+      console.log("검색 결과 클릭 시 ", this.searchResult);
       const markerPos = new window.kakao.maps.LatLng(this.searchResult.y, this.searchResult.x);
       const marker = new window.kakao.maps.Marker({
         position: markerPos,
       });
-      this.addMarker(marker);
+      this.ADD_MARKER(marker);
     },
   },
 };
