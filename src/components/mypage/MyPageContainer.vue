@@ -1,5 +1,5 @@
 <template>
-  <section style="height: 100%">
+  <section>
     <div>
       <div class="row">
         <div class="col col-lg-9 col-xl-7">

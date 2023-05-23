@@ -21,4 +21,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.container {
+  background-image: radial-gradient(circle at 2px 2px, #b0daff 2px, transparent 0);
+  background-size: 40px 40px;
+  height: 100%;
+}
+</style>
