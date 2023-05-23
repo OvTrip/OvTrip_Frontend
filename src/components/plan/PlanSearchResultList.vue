@@ -12,6 +12,7 @@
 
 <script>
 import PlanSearchResultListItem from "./PlanSearchResultListItem.vue";
+
 export default {
   name: "PlanSearchResultList",
   components: { PlanSearchResultListItem },

@@ -1,5 +1,5 @@
 <template>
-  <li class="item">
+  <li class="item" @click="setMarker">
     <span :class="'markerbg marker_' + index"></span>
     <div class="info">
       <h5>{{ searchResult.place_name }}</h5>
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   name: "PlanSearchResultListItem",
   components: {},
@@ -30,7 +31,21 @@ export default {
     };
   },
   created() {},
-  methods: {},
+  methods: {
+    ...mapMutations({
+      addMarker: "ADD_MARKER",
+      setSearchResults: "SET_SEARCH_RESULTS",
+      setPagination: "SET_PAGINATION",
+    }),
+    setMarker() {
+      console.log(this.searchResult);
+      const markerPos = new window.kakao.maps.LatLng(this.searchResult.y, this.searchResult.x);
+      const marker = new window.kakao.maps.Marker({
+        position: markerPos,
+      });
+      this.addMarker(marker);
+    },
+  },
 };
 </script>
 

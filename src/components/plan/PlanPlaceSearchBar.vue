@@ -48,8 +48,6 @@ export default {
     }),
     removeAllChildNods(e) {
       if (e.target.value.length === 0) {
-        // this.setSearchResults(null);
-        // this.setPagination(null);
         this.searchResults = null;
         this.pagination = null;
       }
@@ -72,13 +70,9 @@ export default {
       if (status === kakao.maps.services.Status.OK) {
         // 정상적으로 검색이 완료됐으면
         // 검색 목록과 마커를 표출합니다
-        // this.setSearchResults(data);
         this.searchResults = data;
-        // this.displayPlaces(data);
 
         // 페이지 번호를 표출합니다
-        // this.displayPagination(pagination);
-        // this.setPagination(pagination);
         this.pagination = pagination;
       } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
         alert("검색 결과가 존재하지 않습니다.");
@@ -88,99 +82,6 @@ export default {
         return;
       }
     },
-
-    // 검색 결과 목록과 마커를 표출하는 함수입니다
-    displayPlaces(places) {
-      // let listEl = this.$refs.placesList,
-      //   menuEl = this.$refs.menu_wrap,
-      // fragment = document.createDocumentFragment();
-
-      // 검색 결과 목록에 추가된 항목들을 제거합니다
-      // this.removeAllChildNods(listEl);
-
-      for (var i = 0; i < places.length; i++) {
-        // 마커를 생성하고 지도에 표시합니다
-        // let itemEl = this.getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-        // fragment.appendChild(itemEl);
-      }
-
-      // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
-      // listEl.appendChild(fragment);
-      // menuEl.scrollTop = 0;
-    },
-
-    // 검색결과 목록의 자식 Element를 제거하는 함수입니다
-    // removeAllChildNods(el) {
-    //   while (el.hasChildNodes()) {
-    //     el.removeChild(el.lastChild);
-    //   }
-    // },
-
-    // 검색결과 항목을 Element로 반환하는 함수입니다
-    getListItem(index, places) {
-      let li = document.createElement("li");
-      li.classList.add("item");
-
-      let itemMarkerSpan = document.createElement("span");
-      itemMarkerSpan.classList.add("markerbg", `marker_${index + 1}`);
-
-      let itemDiv = document.createElement("div");
-      itemDiv.classList.add("info");
-
-      let itemH5 = document.createElement("h5");
-      itemH5.innerHTML = places.place_name;
-
-      itemDiv.append(itemH5);
-
-      let itemAddressSpan = document.createElement("span");
-      if (places.road_address_name) {
-        let itemRoadAddressSpan = document.createElement("span");
-        itemRoadAddressSpan.innerHTML = places.road_address_name;
-        itemDiv.append(itemRoadAddressSpan);
-
-        itemAddressSpan.classList.add("jibun", "gray");
-      }
-      itemAddressSpan.innerHTML = places.address_name;
-      itemDiv.append(itemAddressSpan);
-
-      let telSpan = document.createElement("span");
-      telSpan.classList.add("tel");
-      telSpan.innerHTML = places.phone;
-      itemDiv.append(telSpan);
-
-      li.append(itemMarkerSpan, itemDiv);
-      return li;
-    },
-    // 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
-    // displayPagination(pagination) {
-    //   var paginationEl = document.getElementById("pagination"),
-    //     fragment = document.createDocumentFragment(),
-    //     i;
-
-    //   // 기존에 추가된 페이지번호를 삭제합니다
-    //   while (paginationEl.hasChildNodes()) {
-    //     paginationEl.removeChild(paginationEl.lastChild);
-    //   }
-
-    //   for (i = 1; i <= pagination.last; i++) {
-    //     var el = document.createElement("a");
-    //     el.href = "#";
-    //     el.innerHTML = i;
-
-    //     if (i === pagination.current) {
-    //       el.className = "on";
-    //     } else {
-    //       el.onclick = (function (i) {
-    //         return function () {
-    //           pagination.gotoPage(i);
-    //         };
-    //       })(i);
-    //     }
-
-    //     fragment.appendChild(el);
-    //   }
-    //   paginationEl.appendChild(fragment);
-    // },
   },
 };
 </script>
@@ -219,18 +120,5 @@ export default {
   font-weight: 700;
   font-family: "Pretendard";
   background-color: #f3f4f5;
-}
-#pagination {
-  margin: 10px auto;
-  text-align: left;
-}
-#pagination a {
-  display: inline-block;
-  margin-right: 10px;
-}
-#pagination .on {
-  font-weight: bold;
-  cursor: default;
-  color: #777;
 }
 </style>

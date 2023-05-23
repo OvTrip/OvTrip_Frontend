@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     update_marker() {
-      return this.$store.state.markers;
+      return this.$state.markers;
     },
   },
   watch: {
