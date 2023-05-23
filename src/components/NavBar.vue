@@ -1,15 +1,17 @@
 <template>
   <div class="navbar">
-    <img src="@/assets/images/logo-black.png" alt="" />
+    <nav-logo />
     <nav-bar-item></nav-bar-item>
   </div>
 </template>
 
 <script>
 import NavBarItem from "./NavBarItem.vue";
+import NavLogo from "./NavLogo.vue";
+
 export default {
   name: "NavBar",
-  components: { NavBarItem },
+  components: { NavBarItem, NavLogo },
   data() {
     return {
       message: "",
