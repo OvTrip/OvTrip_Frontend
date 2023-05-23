@@ -16,8 +16,15 @@ export default {
   async created() {
     const URL = `http://localhost:8080/oauth/kakao?code=` + this.$route.query.code;
     await axios.get(URL).then((response) => {
-      console.log(response.data.accessToken);
-      this.$router.push({ path: "/" });
+      let accessToken = response.data.accessToken;
+      let token = "Bearer " + accessToken;
+      console.log(accessToken);
+      axios
+        .get("http://localhost:8080/user", {
+          headers: { Authorization: token },
+        })
+        .then((response) => console.log(response))
+        .then(this.$router.push({ path: "/" }));
     });
   },
   methods: {},
