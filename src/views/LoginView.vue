@@ -1,18 +1,4 @@
 <template>
-  <!-- <div class="container">
-    <div class="image">
-      <img src="@/assets/images/jeju.jpg" alt="" />
-    </div>
-    <div class="login-container">
-      <div class="login-box">
-        <h1>로그인</h1>
-        <form action="">
-          <input type="text" />
-          <input type="text" />
-        </form>
-      </div>
-    </div>
-  </div> -->
   <div>
     <div class="container" id="container">
       <div class="form-container sign-in-container">
@@ -27,13 +13,17 @@
                 <li><a href="/password" id="forget-pass">👉 비밀번호를 잊으셨나요?</a></li>
                 <li id="social-title"><span>소셜 로그인</span></li>
                 <li>
-                  <a href="#" class="btn btn-social" id="btn-kakao">
+                  <a
+                    href="https://kauth.kakao.com/oauth/authorize?client_id=5cdb2cdfda05890886996812b9fd0e60&redirect_uri=http://localhost:8081/oauth/kakao/callback&response_type=code"
+                    class="btn btn-social"
+                    id="btn-kakao"
+                  >
                     <img src="@/assets/images/kakao.png" alt="" />
                     <span class="social-label">카카오 로그인</span>
                   </a>
                 </li>
                 <li>
-                  <a class="btn btn-social" id="btn-naver">
+                  <a class="btn btn-social" id="btn-naver" @click="login">
                     <img src="@/assets/images/naver.png" alt="" />
                     <span class="social-label">네이버 로그인</span>
                   </a>
@@ -73,8 +63,9 @@
     </div>
   </div>
 </template>
-
 <script>
+// import axios from "axios";
+
 export default {
   name: "LoginView",
   components: {},
