@@ -13,15 +13,21 @@
                     style="color: rgba(0, 0, 0, 0.8)"
                   />
                 </button>
-                <img src="@/assets/images/user.png" class="img-fluid img-thumbnail" />
+                <img
+                  :src="userInfo.profileImg"
+                  class="img-fluid img-thumbnail"
+                />
               </div>
               <div class="user-info">
-                <div>닉네임</div>
+                <div>{{ userInfo.userNickname }}</div>
                 <div class="follow-info">여행 1 팔로워 0 팔로잉 0</div>
               </div>
             </div>
             <div class="card-body" style="padding: 1.5rem !important">
-              <div class="d-flex justify-content-between align-items-center" style="">
+              <div
+                class="d-flex justify-content-between align-items-center"
+                style=""
+              >
                 <span id="mytrip"
                   >나의 여행
                   <img
@@ -44,6 +50,11 @@
 // import MyPageUserInfo from "@/components/mypage/MyPageUserInfo.vue";
 // import MyPageTab from "@/components/mypage/MyPageTab.vue";
 // MyPageUserInfo, MyPageTab
+
+import { mapState } from "vuex";
+
+const userStore = "userStore";
+
 import MyPagePlanList from "./MyPagePlanList.vue";
 export default {
   name: "MyPageContainer",
@@ -52,6 +63,9 @@ export default {
     return {
       message: "",
     };
+  },
+  computed: {
+    ...mapState(userStore, ["userInfo"]),
   },
   created() {},
   methods: {},
@@ -107,7 +121,8 @@ export default {
   --mdb-card-border-width: 1px;
   --mdb-card-border-color: var(--mdb-border-color-translucent);
   --mdb-card-border-radius: 0.5rem;
-  --mdb-card-box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
+  --mdb-card-box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07),
+    0 10px 20px -2px rgba(0, 0, 0, 0.04);
   --mdb-card-inner-border-radius: calc(0.5rem - 1px);
   --mdb-card-cap-padding-y: 0.75rem;
   --mdb-card-cap-padding-x: 1.5rem;
@@ -148,6 +163,7 @@ export default {
 
 .profile > img {
   width: 150px;
+  border-radius: 150px;
   z-index: 1;
   margin-bottom: 0.5rem !important;
   margin-top: 1.5rem;

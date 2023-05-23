@@ -3,20 +3,27 @@
     <div id="menu">
       <ul>
         <li>
-          <a href="#"><font-awesome-icon icon="fa-solid fa-magnifying-glass" size="xl" /></a>
+          <a href="#"
+            ><font-awesome-icon icon="fa-solid fa-magnifying-glass" size="xl"
+          /></a>
         </li>
         <li>
           <a href="/login"
-            ><font-awesome-icon icon="fa-solid fa-user" style="color: #000000" size="xl"
+            ><font-awesome-icon
+              icon="fa-solid fa-user"
+              style="color: #000000"
+              size="xl"
           /></a>
           <ul>
-            <li id="profile">닉네임님 안녕하세요!</li>
+            <li id="profile">{{ userInfo.userNickname }}님 안녕하세요!</li>
             <li><a href="/mypage">My Page</a></li>
             <li>Logout</li>
           </ul>
         </li>
         <li>
-          <a href="#"><font-awesome-icon icon="fa-solid fa-bell" size="xl" /></a>
+          <a href="#"
+            ><font-awesome-icon icon="fa-solid fa-bell" size="xl"
+          /></a>
         </li>
       </ul>
     </div>
@@ -24,6 +31,10 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
+const userStore = "userStore";
+
 export default {
   name: "NavBarItem",
   components: {},
@@ -31,6 +42,9 @@ export default {
     return {
       message: "",
     };
+  },
+  computed: {
+    ...mapState(userStore, ["userInfo"]),
   },
   created() {},
   methods: {},

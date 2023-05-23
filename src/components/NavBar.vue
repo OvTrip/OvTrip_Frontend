@@ -2,9 +2,9 @@
   <div class="navbar">
     <nav-logo />
     <!-- after login -->
-    <nav-bar-item v-if="userInfo"></nav-bar-item>
+    <nav-bar-item v-if="isLogin"></nav-bar-item>
     <!-- before login -->
-    <a class="btn btn-login" href="/login"
+    <a class="btn btn-login" href="/login" v-else
       >로그인<font-awesome-icon
         icon="fa-solid fa-right-to-bracket"
         style="color: #000000; margin-left: 2px"
@@ -15,6 +15,9 @@
 <script>
 import NavBarItem from "./NavBarItem.vue";
 import NavLogo from "./NavLogo.vue";
+import { mapState } from "vuex";
+
+const userStore = "userStore";
 
 export default {
   name: "NavBar",
@@ -24,7 +27,12 @@ export default {
       message: "",
     };
   },
-  created() {},
+  computed: {
+    ...mapState(userStore, ["isLogin"]),
+  },
+  created() {
+    console.log(this.userInfo);
+  },
   methods: {},
 };
 </script>
