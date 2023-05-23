@@ -68,6 +68,7 @@ export default {
 
 .title-input-div {
   width: 100%;
+  overflow: hidden;
 }
 
 .title-input {
@@ -81,9 +82,16 @@ export default {
   border-radius: 8px;
   float: left;
   width: 15ch; /* placeholder 글자 길이에 맞는 width */
+  text-overflow: ellipsis;
 }
-.title-input:hover,
-:focus {
-  background-color: #f3f4f5;
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #fff inset;
+  -webkit-text-fill-color: #000;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
 }
 </style>

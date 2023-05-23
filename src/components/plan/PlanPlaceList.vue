@@ -1,6 +1,6 @@
 <template>
   <div class="place-list-container">
-    <div id="placeListTitle">방문할 여행지 목록</div>
+    <div id="placeListTitle">추가한 여행지 목록</div>
     <div class="place-list-div" id="menu_wrap">
       <plan-place-search-bar></plan-place-search-bar>
       <template v-for="(item, index) in placeList">

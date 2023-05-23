@@ -71,9 +71,10 @@ export default {
 
 <style scoped>
 .map-container {
+  position: fixed;
+  right: 0;
   width: 50%;
   height: 100vh;
-  float: right;
 }
 #kakaoMap {
   width: 100%;
