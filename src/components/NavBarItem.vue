@@ -3,27 +3,20 @@
     <div id="menu">
       <ul>
         <li>
-          <a href="#"
-            ><font-awesome-icon icon="fa-solid fa-magnifying-glass" size="xl"
-          /></a>
+          <a href="#"><font-awesome-icon icon="fa-solid fa-magnifying-glass" size="xl" /></a>
         </li>
         <li>
           <a href="/login"
-            ><font-awesome-icon
-              icon="fa-solid fa-user"
-              style="color: #000000"
-              size="xl"
+            ><font-awesome-icon icon="fa-solid fa-user" style="color: #000000" size="xl"
           /></a>
           <ul>
             <li id="profile">{{ userInfo.userNickname }}님 안녕하세요!</li>
             <li><a href="/mypage">My Page</a></li>
-            <li>Logout</li>
+            <li><a @click.prevent="onClickLogout">Logout</a></li>
           </ul>
         </li>
         <li>
-          <a href="#"
-            ><font-awesome-icon icon="fa-solid fa-bell" size="xl"
-          /></a>
+          <a href="#"><font-awesome-icon icon="fa-solid fa-bell" size="xl" /></a>
         </li>
       </ul>
     </div>
@@ -31,7 +24,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 const userStore = "userStore";
 
@@ -47,7 +40,13 @@ export default {
     ...mapState(userStore, ["userInfo"]),
   },
   created() {},
-  methods: {},
+  methods: {
+    ...mapActions(userStore, ["logoutUser"]),
+    onClickLogout() {
+      this.logoutUser();
+      if (this.$route.path !== "/") this.$router.push("/");
+    },
+  },
 };
 </script>
 

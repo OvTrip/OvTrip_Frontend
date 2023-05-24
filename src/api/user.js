@@ -12,6 +12,18 @@ async function getUserInfo(success, fail) {
   await api.get(`/user`).then(success).catch(fail);
 }
 
+async function tokenRegeneration(success, fail) {
+  let token = "Bearer " + sessionStorage.getItem("refresh-token");
+  api.defaults.headers["Authorization"] = token;
+  await api.post(`/access-token/issue`).then(success).catch(fail);
+}
+
+async function logout(success, fail) {
+  let token = "Bearer " + sessionStorage.getItem("access-token");
+  api.defaults.headers["Authorization"] = token;
+  await api.post(`/logout`).then(success).catch(fail);
+}
+
 // async function login(user, success, fail) {
 //   await api.post(`/user/login`, JSON.stringify(user)).then(success).catch(fail);
 // }
@@ -32,4 +44,4 @@ async function getUserInfo(success, fail) {
 // }
 
 // export { login, findById, tokenRegeneration, logout };
-export { kakaologin, getUserInfo };
+export { kakaologin, getUserInfo, tokenRegeneration, logout };

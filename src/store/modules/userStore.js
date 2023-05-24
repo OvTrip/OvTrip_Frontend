@@ -1,5 +1,5 @@
 import router from "@/router";
-import { getUserInfo, kakaologin } from "@/api/user";
+import { getUserInfo, kakaologin, tokenRegeneration, logout } from "@/api/user";
 
 const userStore = {
   namespaced: true,
@@ -73,6 +73,43 @@ const userStore = {
           console.log(error);
         }
       );
+    },
+    async getAccessTokenByRefreshToken({ commit }) {
+      await tokenRegeneration((response) => {
+        if (response.status === 200) {
+          let accessToken = response.data["accessToken"];
+          commit("SET_IS_LOGIN", true);
+          commit("SET_IS_LOGIN_ERROR", false);
+          commit("SET_IS_VALID_TOKEN", true);
+          sessionStorage.setItem("access-token", accessToken);
+        } else {
+          commit("SET_IS_LOGIN", false);
+          commit("SET_IS_LOGIN_ERROR", true);
+          commit("SET_IS_VALID_TOKEN", false);
+        }
+      },
+        (error) => {
+          console.log(error);
+        })
+    },
+    async logoutUser({ commit }) {
+      await logout((response) => {
+        if (response.status == 200) {
+          commit("SET_IS_LOGIN", false);
+          commit("SET_IS_LOGIN_ERROR", true);
+          commit("SET_IS_VALID_TOKEN", false);
+          sessionStorage.clear();
+        } else {
+          console.log("잘못된 access token임. 로그아웃 처리.");
+          commit("SET_IS_LOGIN", false);
+          commit("SET_IS_LOGIN_ERROR", true);
+          commit("SET_IS_VALID_TOKEN", false);
+          sessionStorage.clear();
+        }
+      },
+        (error) => {
+        console.log(error);
+      })
     },
   },
 };
