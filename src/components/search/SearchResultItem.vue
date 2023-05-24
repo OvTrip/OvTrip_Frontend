@@ -1,8 +1,8 @@
 <template>
   <li>
     <div class="user-profile">
-      <img class="profile-image" src="@/assets/images/user.png" />
-      <div class="name">홍길동</div>
+      <img class="profile-image" :src="user.profileImg" />
+      <div class="name">{{ user.userNickname }}</div>
     </div>
     <button class="btn-follow">Follow</button>
   </li>
@@ -12,6 +12,7 @@
 export default {
   name: "SearchResultItem",
   components: {},
+  props: { user: Object },
   data() {
     return {
       message: "",

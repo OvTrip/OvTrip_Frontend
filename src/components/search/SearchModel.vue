@@ -58,7 +58,7 @@ export default {
     },
     sendKeyword() {
       this.SET_IS_MODAL_OPEN(false);
-      this.$router.push({ path: `/search?keyword=${this.keyword}` });
+      location.href = `/search?keyword=${this.keyword}`;
     },
   },
 };

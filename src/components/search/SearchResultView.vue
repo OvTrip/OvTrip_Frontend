@@ -3,8 +3,8 @@
     <div class="area_cont">
       <div id="search-title">{{ keyword }} 사용자에 대한 검색 결과</div>
       <div class="table-container">
-        <ul>
-          <search-result-item />
+        <ul v-for="user in userinfo" :key="user.id">
+          <search-result-item :user="user" />
         </ul>
       </div>
     </div>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import SearchResultItem from "./SearchResultItem.vue";
 export default {
   name: "SearchResultView",
@@ -19,10 +20,16 @@ export default {
   data() {
     return {
       keyword: "",
+      userinfo: [],
     };
   },
-  created() {
+  async created() {
     this.keyword = this.$route.query.keyword;
+    await axios
+      .get(`http://localhost:8080/user/search?keyword=${this.keyword}`)
+      .then(({ data }) => {
+        this.userinfo = data;
+      });
   },
   methods: {},
 };
