@@ -43,6 +43,10 @@ export default {
     ]),
     addVisitPlace() {
       //위도(latitude) y, 경도(longitude) x
+      const markerPos = new window.kakao.maps.LatLng(this.searchResult.y, this.searchResult.x);
+      const marker = new window.kakao.maps.Marker({
+        position: markerPos,
+      });
       let visitPlace = {
         place_name: this.searchResult.place_name,
         place_url: this.searchResult.place_url,
@@ -51,10 +55,6 @@ export default {
         latitude: this.searchResult.y,
         longitude: this.searchResult.x,
       };
-      const markerPos = new window.kakao.maps.LatLng(this.searchResult.y, this.searchResult.x);
-      const marker = new window.kakao.maps.Marker({
-        position: markerPos,
-      });
       this.SET_SEARCH_RESULTS(null);
       this.SET_PAGINATION(null);
       this.CHANGE_SEARCH_INPUT_TEXT(null);

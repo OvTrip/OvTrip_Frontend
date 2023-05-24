@@ -15,7 +15,7 @@ export default {
   },
   watch: {
     markers: {
-      immediate: true,
+      // immediate: true,
       handler(markers) {
         this.setMarkers(markers);
       },
@@ -24,6 +24,9 @@ export default {
   data() {
     return {
       map: null,
+      bounds: null,
+      polyline: null,
+      linePath: [],
     };
   },
   created() {},
@@ -52,12 +55,28 @@ export default {
         center: seoulPos,
         level: 7,
       };
+      // this.SET_MAP(new kakao.maps.Map(container, options));
       this.map = new kakao.maps.Map(container, options);
+      this.polyline = new kakao.maps.Polyline({
+        strokeWeight: 5, // 선의 두께 입니다
+        strokeColor: "#0080FF", // 선의 색깔입니다
+        strokeOpacity: 0.5, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+        strokeStyle: "solid", // 선의 스타일입니다
+      });
     },
     setMarkers(markers) {
-      for (let i = 0; i < markers.length; i++) {
-        console.log(markers[i]);
-        markers[i].setMap(this.map);
+      this.polyline.setMap(null);
+      let linePath = [];
+      if (markers.length) {
+        this.bounds = new kakao.maps.LatLngBounds();
+        for (let i = 0; i < markers.length; i++) {
+          markers[i].setMap(this.map);
+          this.bounds.extend(markers[i].getPosition());
+          linePath.push(markers[i].getPosition());
+        }
+        this.polyline.setPath(linePath);
+        this.map.setBounds(this.bounds);
+        this.polyline.setMap(this.map);
       }
     },
   },
