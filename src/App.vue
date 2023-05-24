@@ -38,7 +38,7 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 30px #f3f4f5 inset;
+  -webkit-box-shadow: 0 0 0 30px #daf5ff inset;
   -webkit-text-fill-color: #000;
 }
 input:-webkit-autofill,

@@ -112,6 +112,7 @@ export default {
   margin-left: 5px;
 }
 .search-input-div {
+  width: calc(100% - 50px);
   letter-spacing: 1px;
   padding: 15px 15px 15px 20px;
   margin: 10px;
@@ -121,7 +122,7 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-color: #f3f4f5;
+  background-color: #daf5ff;
   height: 56px;
 }
 .search-input {
@@ -131,6 +132,6 @@ export default {
   font-size: 20px;
   font-weight: 700;
   font-family: "Pretendard";
-  background-color: #f3f4f5;
+  background-color: #daf5ff;
 }
 </style>

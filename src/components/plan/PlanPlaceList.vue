@@ -39,8 +39,6 @@ export default {
   bottom: 0;
   width: calc(100% - 100px);
 }
-.place-list-div {
-}
 #placeListTitle {
   text-align: left;
   font-family: "Pretendard";

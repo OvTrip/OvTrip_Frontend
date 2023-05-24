@@ -1,12 +1,19 @@
 <template>
-  <div class="place-list-item-div">
-    <div class="pin-icon-div">
-      <img src="@/assets/images/map-pin.png" alt="" width="32px" />
+  <div class="place-list-item-container" @mouseover="itemMouseOver" @mouseleave="itemMouseLeave">
+    <div class="place-list-item-div">
+      <div class="pin-icon-div">
+        <img src="@/assets/images/map-pin.png" alt="" width="32px" />
+      </div>
+      <div class="pin-number-div">
+        <span>{{ index + 1 }}</span>
+      </div>
+      <span>{{ visitPlace.place_name }}</span>
     </div>
-    <div class="pin-number-div">
-      <span>{{ index + 1 }}</span>
+    <div class="selection-item-control-div">
+      <button v-show="isShow" class="selection-item-control-btn">
+        <font-awesome-icon icon="fa-regular fa-trash-can" size="lg" />
+      </button>
     </div>
-    <span>{{ visitPlace.place_name }}</span>
   </div>
 </template>
 
@@ -20,30 +27,48 @@ export default {
   },
   data() {
     return {
+      isShow: false,
       message: "",
     };
   },
   created() {},
-  methods: {},
+  methods: {
+    itemMouseOver() {
+      this.isShow = true;
+    },
+    itemMouseLeave() {
+      this.isShow = false;
+    },
+  },
 };
 </script>
 
 <style scoped>
+.place-list-item-container {
+  display: flex;
+  align-items: center;
+}
 .place-list-item-div {
   font-size: 20px;
   font-weight: 700;
   font-family: "Pretendard";
   letter-spacing: 1px;
+  width: calc(100% - 50px);
+
   padding: 15px 15px 15px 20px;
   margin: 10px;
   border-radius: 10px;
-  background-color: #f3f4f5;
+  background-color: #daf5ff;
   color: #212529;
   box-sizing: border-box;
   display: flex;
   justify-content: flex-start;
   position: relative;
   align-items: center;
+}
+.place-list-item-div:hover {
+  cursor: pointer;
+  border-color: #b0daff;
 }
 .pin-icon-div {
   position: absolute;
@@ -54,5 +79,14 @@ export default {
   position: absolute;
   top: 14px;
   left: -2px;
+}
+.selection-item-control-div {
+}
+.selection-item-control-btn {
+  background-color: #fff;
+  border: none;
+}
+.selection-item-control-btn:hover {
+  cursor: pointer;
 }
 </style>

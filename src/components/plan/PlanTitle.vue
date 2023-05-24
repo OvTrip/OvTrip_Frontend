@@ -83,5 +83,6 @@ export default {
   float: left;
   width: 15ch; /* placeholder 글자 길이에 맞는 width */
   text-overflow: ellipsis;
+  background-color: #daf5ff;
 }
 </style>
