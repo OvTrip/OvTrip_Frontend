@@ -31,7 +31,6 @@ export default {
   created() {},
   methods: {
     movePage(index) {
-      console.log(index + 1);
       return this.pagination.gotoPage(index + 1);
     },
   },

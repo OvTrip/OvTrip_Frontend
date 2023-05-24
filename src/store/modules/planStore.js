@@ -6,6 +6,8 @@ const planStore = {
     pagination: [],
     visitPlaceList: [],
     searchInputText: "",
+    planDate: null,
+    courseDate: "",
   },
   getters: {},
   mutations: {
@@ -30,6 +32,12 @@ const planStore = {
     },
     CHANGE_SEARCH_INPUT_TEXT(state, searchInputText) {
       state.searchInputText = searchInputText;
+    },
+    SET_COURSE_DATE(state, courseDate) {
+      state.courseDate = courseDate;
+    },
+    SET_PLAN_DATE(state, planDate) {
+      state.planDate = planDate;
     },
   },
   actions: {},

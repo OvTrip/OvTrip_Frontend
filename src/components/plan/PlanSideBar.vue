@@ -6,8 +6,11 @@
       :lang="lang"
       :placeholder="placeholder"
       :clearable="false"
+      @close="confirmDate"
     >
-      <i slot="calendar-icon"><font-awesome-icon icon="fa-solid fa-calendar-days" /></i>
+      <i slot="icon-calendar">
+        <font-awesome-icon icon="fa-regular fa-calendar-days" />
+      </i>
     </date-picker>
   </div>
 </template>
@@ -15,6 +18,9 @@
 <script>
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/scss/index.scss";
+import moment from "moment";
+import { mapMutations } from "vuex";
+const planStore = "planStore";
 
 export default {
   name: "PlanSideBar",
@@ -22,10 +28,7 @@ export default {
   data() {
     return {
       //날짜 선택시 v-model을 통해 binding되는 data
-      selectedDate: {
-        start: null,
-        end: null,
-      },
+      selectedDate: [],
       lang: {
         days: ["일", "월", "화", "수", "목", "금", "토"],
         months: [
@@ -51,7 +54,18 @@ export default {
   },
   created() {},
   mounted() {},
-  methods: {},
+  methods: {
+    ...mapMutations(planStore, ["SET_PLAN_DATE"]),
+    confirmDate() {
+      if (this.selectedDate[0] && this.selectedDate[1]) {
+        let planDate = {
+          start_date: moment(this.selectedDate[0]).format("YYYYMMDD"),
+          end_date: moment(this.selectedDate[1]).format("YYYYMMDD"),
+        };
+        this.SET_PLAN_DATE(planDate);
+      }
+    },
+  },
 };
 </script>
 
