@@ -6,6 +6,10 @@ async function kakaologin(code, success, fail) {
   await api.get(`/oauth/kakao?code=${code}`).then(success).catch(fail);
 }
 
+async function naverlogin(code, state, success, fail) {
+  await api.get(`/oauth/naver?code=${code}&state=${state}`).then(success).catch(fail);
+}
+
 async function getUserInfo(success, fail) {
   let token = "Bearer " + sessionStorage.getItem("access-token");
   api.defaults.headers["Authorization"] = token;
@@ -44,4 +48,4 @@ async function logout(success, fail) {
 // }
 
 // export { login, findById, tokenRegeneration, logout };
-export { kakaologin, getUserInfo, tokenRegeneration, logout };
+export { kakaologin, naverlogin, getUserInfo, tokenRegeneration, logout };

@@ -7,6 +7,7 @@ import SignUpView from "@/views/SignUpView.vue"
 import ForgotPassword from '@/views/ForgotPassword.vue'
 import LoginCallBack from "@/views/LoginCallBack.vue"
 import AppMypage from '@/views/AppMypage.vue'
+import NaverLoginCallBack from '@/views/NaverLoginCallBack'
 
 Vue.use(VueRouter);
 
@@ -45,6 +46,11 @@ const routes = [
     path: '/mypage',
     name: 'mypage',
     component: AppMypage
+  },
+  {
+    path: `/oauth/naver`,
+    name: 'naverLoginCallBack',
+    component: NaverLoginCallBack
   }
 ]
 

@@ -13,17 +13,13 @@
                 <li><a href="/password" id="forget-pass">👉 비밀번호를 잊으셨나요?</a></li>
                 <li id="social-title"><span>소셜 로그인</span></li>
                 <li>
-                  <a
-                    href="https://kauth.kakao.com/oauth/authorize?client_id=5cdb2cdfda05890886996812b9fd0e60&redirect_uri=http://localhost:8081/oauth/kakao/callback&response_type=code"
-                    class="btn btn-social"
-                    id="btn-kakao"
-                  >
+                  <a class="btn btn-social" id="btn-kakao" @click="kakaologin()">
                     <img src="@/assets/images/kakao.png" alt="" />
                     <span class="social-label">카카오 로그인</span>
                   </a>
                 </li>
                 <li>
-                  <a class="btn btn-social" id="btn-naver" @click="login">
+                  <a class="btn btn-social" id="btn-naver" @click="naverlogin()">
                     <img src="@/assets/images/naver.png" alt="" />
                     <span class="social-label">네이버 로그인</span>
                   </a>
@@ -71,11 +67,21 @@ export default {
   components: {},
   data() {
     return {
-      message: "",
+      kakaoURL: process.env.VUE_APP_KAKAO,
+      naverURL: process.env.VUE_APP_NAVER,
     };
   },
-  created() {},
-  methods: {},
+  created() {
+    console.log(process.env);
+  },
+  methods: {
+    kakaologin() {
+      location.href = this.kakaoURL;
+    },
+    naverlogin() {
+      location.href = this.naverURL;
+    },
+  },
 };
 </script>
 

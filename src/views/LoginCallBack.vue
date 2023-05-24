@@ -23,19 +23,6 @@ export default {
     let code = this.$route.query.code;
     console.log(code);
     this.kakao(code);
-    // const URL =
-    //   `http://localhost:8080/oauth/kakao?code=` + this.$route.query.code;
-    // await axios.get(URL).then((response) => {
-    //   let accessToken = response.data.accessToken;
-    //   let token = "Bearer " + accessToken;
-    //   console.log(accessToken);
-    //   axios
-    //     .get("http://localhost:8080/user", {
-    //       headers: { Authorization: token },
-    //     })
-    //     .then((response) => console.log(response.data))
-    //     .then(this.$router.push({ path: "/" }));
-    // });
   },
   methods: {
     ...mapActions(userStore, ["kakao"]),
