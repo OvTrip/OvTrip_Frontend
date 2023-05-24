@@ -3,6 +3,9 @@
     <div id="menu">
       <ul>
         <li>
+          <a href="/notice">공지사항</a>
+        </li>
+        <li>
           <a href="#"><font-awesome-icon icon="fa-solid fa-magnifying-glass" size="xl" /></a>
         </li>
         <li>

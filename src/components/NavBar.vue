@@ -4,11 +4,16 @@
     <!-- after login -->
     <nav-bar-item v-if="isLogin"></nav-bar-item>
     <!-- before login -->
-    <a class="btn btn-login" href="/login" v-else
-      >로그인<font-awesome-icon
-        icon="fa-solid fa-right-to-bracket"
-        style="color: #000000; margin-left: 2px"
-    /></a>
+    <ul v-else>
+      <li id="notice"><a href="/notice">공지사항</a></li>
+      <li>
+        <a class="btn btn-login" href="/login"
+          >로그인<font-awesome-icon
+            icon="fa-solid fa-right-to-bracket"
+            style="color: #000000; margin-left: 2px"
+        /></a>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -40,6 +45,11 @@ export default {
 <style scoped>
 * {
   box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 .navbar {
   display: flex;
@@ -82,5 +92,22 @@ img {
   border-bottom: 5px solid #feff86;
   font-weight: 500;
   padding: 10px;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  float: left;
+
+  /* padding-left: 10px; */
+  line-height: 40px;
+}
+
+#notice {
+  margin-right: 20px;
+  font-weight: 500;
+  font-size: 18px;
 }
 </style>
