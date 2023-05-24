@@ -44,6 +44,6 @@ export default {
   font-family: "Pretendard";
   font-size: 25px;
   font-weight: 700;
-  margin: 10px;
+  margin: 20px 10px 20px 10px;
 }
 </style>

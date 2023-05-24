@@ -10,7 +10,7 @@
       <span>{{ visitPlace.place_name }}</span>
     </div>
     <div class="selection-item-control-div">
-      <button v-show="isShow" class="selection-item-control-btn">
+      <button v-show="isShow" class="selection-item-control-btn" @click="removeItem">
         <font-awesome-icon icon="fa-regular fa-trash-can" size="lg" />
       </button>
     </div>
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+const planStore = "planStore";
 export default {
   name: "PlanPlaceListItem",
   components: {},
@@ -33,11 +35,15 @@ export default {
   },
   created() {},
   methods: {
+    ...mapMutations(planStore, ["REMOVE_VISIT_PLACE"]),
     itemMouseOver() {
       this.isShow = true;
     },
     itemMouseLeave() {
       this.isShow = false;
+    },
+    removeItem() {
+      this.REMOVE_VISIT_PLACE(this.index);
     },
   },
 };
@@ -54,9 +60,8 @@ export default {
   font-family: "Pretendard";
   letter-spacing: 1px;
   width: calc(100% - 50px);
-
   padding: 15px 15px 15px 20px;
-  margin: 10px;
+  margin: 10px 10px 0px 10px;
   border-radius: 10px;
   background-color: #daf5ff;
   color: #212529;

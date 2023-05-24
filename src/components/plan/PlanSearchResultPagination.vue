@@ -40,7 +40,7 @@ export default {
 
 <style scoped>
 #pagination {
-  margin: 10px auto;
+  margin: 0px 10px 0px 10px;
   text-align: center;
 }
 a {

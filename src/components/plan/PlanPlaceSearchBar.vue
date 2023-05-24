@@ -115,7 +115,7 @@ export default {
   width: calc(100% - 50px);
   letter-spacing: 1px;
   padding: 15px 15px 15px 20px;
-  margin: 10px;
+  margin: 0px 10px 0px 10px;
   border-radius: 10px;
   color: #212529;
   box-sizing: border-box;

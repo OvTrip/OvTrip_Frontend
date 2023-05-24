@@ -21,6 +21,9 @@ const planStore = {
     ADD_VISIT_PLACE(state, visitPlace) {
       state.visitPlaceList.push(visitPlace);
     },
+    REMOVE_VISIT_PLACE(state, index) {
+      state.visitPlaceList.splice(index, 1);
+    },
     CHANGE_SEARCH_INPUT_TEXT(state, searchInputText) {
       state.searchInputText = searchInputText;
     },
