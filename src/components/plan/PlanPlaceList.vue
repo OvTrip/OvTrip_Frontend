@@ -3,8 +3,12 @@
     <div id="placeListTitle">추가한 여행지 목록</div>
     <div class="place-list-div" id="menu_wrap">
       <plan-place-search-bar></plan-place-search-bar>
-      <template v-for="(item, index) in placeList">
-        <plan-place-list-item :key="index" :item="item"></plan-place-list-item>
+      <template v-for="(visitPlace, index) in visitPlaceList">
+        <plan-place-list-item
+          :key="index"
+          :visitPlace="visitPlace"
+          :index="index"
+        ></plan-place-list-item>
       </template>
     </div>
   </div>
@@ -13,17 +17,17 @@
 <script>
 import PlanPlaceListItem from "./PlanPlaceListItem.vue";
 import PlanPlaceSearchBar from "./PlanPlaceSearchBar.vue";
+import { mapState } from "vuex";
+const planStore = "planStore";
+
 export default {
   name: "PlanPlaceList",
   components: { PlanPlaceListItem, PlanPlaceSearchBar },
+  computed: {
+    ...mapState(planStore, ["visitPlaceList"]),
+  },
   data() {
-    return {
-      placeList: [
-        { name: "경복궁", id: 0 },
-        { name: "N남산타워", id: 1 },
-        { name: "인사동", id: 2 },
-      ],
-    };
+    return {};
   },
   created() {},
   methods: {},

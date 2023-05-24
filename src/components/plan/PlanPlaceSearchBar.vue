@@ -8,10 +8,11 @@
         <form @submit.prevent="searchPlaces">
           <input
             class="search-input"
+            ref="searchInput"
             id="keyword"
             type="text"
             placeholder="여행지를 추가하세요"
-            @input="removeAllChildNods"
+            @input="changeInputText"
           />
         </form>
       </div>
@@ -22,7 +23,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import PlanSearchResultList from "./PlanSearchResultList.vue";
 import PlanSearchResultPagination from "./PlanSearchResultPagination.vue";
 
@@ -30,24 +31,36 @@ const planStore = "planStore";
 export default {
   name: "PlanPlaceSearchBar",
   components: { PlanSearchResultList, PlanSearchResultPagination },
+  computed: { ...mapState(planStore, ["searchInputText"]) },
+  watch: {
+    searchInputText: {
+      handler(searchInputText) {
+        if (searchInputText == null || searchInputText.length == 0) {
+          this.SET_SEARCH_RESULTS(null);
+          this.SET_PAGINATION(null);
+          this.$refs.searchInput.value = "";
+        }
+      },
+    },
+  },
   data() {
     return {
-      ps: null,
       searchResults: null,
       pagination: null,
+      inputText: "",
     };
   },
   created() {},
   mounted() {},
   methods: {
-    ...mapMutations(planStore, ["ADD_MARKER", "SET_SEARCH_RESULTS", "SET_PAGINATION"]),
-    removeAllChildNods(e) {
-      if (e.target.value.length === 0) {
-        // this.searchResults = null;
-        this.SET_SEARCH_RESULTS(null);
-        // this.pagination = null;
-        this.SET_PAGINATION(null);
-      }
+    ...mapMutations(planStore, [
+      "ADD_MARKER",
+      "SET_SEARCH_RESULTS",
+      "SET_PAGINATION",
+      "CHANGE_SEARCH_INPUT_TEXT",
+    ]),
+    changeInputText(e) {
+      this.CHANGE_SEARCH_INPUT_TEXT(e.target.value);
     },
     searchPlaces() {
       var keyword = document.getElementById("keyword").value;

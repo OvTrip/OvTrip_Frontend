@@ -4,9 +4,9 @@
       <img src="@/assets/images/map-pin.png" alt="" width="32px" />
     </div>
     <div class="pin-number-div">
-      <span>{{ item.id }}</span>
+      <span>{{ index + 1 }}</span>
     </div>
-    <span>{{ item.name }}</span>
+    <span>{{ visitPlace.place_name }}</span>
   </div>
 </template>
 
@@ -15,7 +15,8 @@ export default {
   name: "PlanPlaceListItem",
   components: {},
   props: {
-    item: Object,
+    visitPlace: Object,
+    index: Number,
   },
   data() {
     return {

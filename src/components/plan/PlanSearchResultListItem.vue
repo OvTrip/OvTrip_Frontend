@@ -1,5 +1,5 @@
 <template>
-  <li class="item" @click="setMarker">
+  <li class="item" @click="addVisitPlace">
     <span :class="'markerbg marker_' + index"></span>
     <div class="info">
       <h5>{{ searchResult.place_name }}</h5>
@@ -34,13 +34,31 @@ export default {
   },
   created() {},
   methods: {
-    ...mapMutations(planStore, ["ADD_MARKER"]),
-    setMarker() {
-      console.log("검색 결과 클릭 시 ", this.searchResult);
+    ...mapMutations(planStore, [
+      "ADD_MARKER",
+      "ADD_VISIT_PLACE",
+      "SET_SEARCH_RESULTS",
+      "SET_PAGINATION",
+      "CHANGE_SEARCH_INPUT_TEXT",
+    ]),
+    addVisitPlace() {
+      //위도(latitude) y, 경도(longitude) x
+      let visitPlace = {
+        place_name: this.searchResult.place_name,
+        place_url: this.searchResult.place_url,
+        address_name: this.searchResult.address_name,
+        road_address_name: this.searchResult.road_address_name,
+        latitude: this.searchResult.y,
+        longitude: this.searchResult.x,
+      };
       const markerPos = new window.kakao.maps.LatLng(this.searchResult.y, this.searchResult.x);
       const marker = new window.kakao.maps.Marker({
         position: markerPos,
       });
+      this.SET_SEARCH_RESULTS(null);
+      this.SET_PAGINATION(null);
+      this.CHANGE_SEARCH_INPUT_TEXT(null);
+      this.ADD_VISIT_PLACE(visitPlace);
       this.ADD_MARKER(marker);
     },
   },
