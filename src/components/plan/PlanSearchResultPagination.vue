@@ -41,6 +41,7 @@ export default {
 <style scoped>
 #pagination {
   margin: 0px 10px 0px 10px;
+  width: calc(100% - 50px);
   text-align: center;
 }
 a {

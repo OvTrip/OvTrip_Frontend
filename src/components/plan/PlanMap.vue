@@ -56,6 +56,7 @@ export default {
     },
     setMarkers(markers) {
       for (let i = 0; i < markers.length; i++) {
+        console.log(markers[i]);
         markers[i].setMap(this.map);
       }
     },

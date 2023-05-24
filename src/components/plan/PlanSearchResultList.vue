@@ -32,7 +32,8 @@ export default {
 
 <style scoped>
 #placesList {
-  margin: 0px;
+  width: calc(100% - 50px);
+  margin: 0px 10px 0px 10px;
   padding-left: 0px;
 }
 </style>

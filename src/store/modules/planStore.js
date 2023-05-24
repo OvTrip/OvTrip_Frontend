@@ -12,6 +12,10 @@ const planStore = {
     ADD_MARKER(state, marker) {
       state.markers.push(marker);
     },
+    REMOVE_MARKER(state, index) {
+      state.markers[index].setMap(null);
+      state.markers.splice(index, 1);
+    },
     SET_SEARCH_RESULTS(state, searchResults) {
       state.searchResults = searchResults;
     },

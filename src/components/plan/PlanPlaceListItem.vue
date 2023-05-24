@@ -35,7 +35,7 @@ export default {
   },
   created() {},
   methods: {
-    ...mapMutations(planStore, ["REMOVE_VISIT_PLACE"]),
+    ...mapMutations(planStore, ["REMOVE_VISIT_PLACE", "REMOVE_MARKER"]),
     itemMouseOver() {
       this.isShow = true;
     },
@@ -44,6 +44,7 @@ export default {
     },
     removeItem() {
       this.REMOVE_VISIT_PLACE(this.index);
+      this.REMOVE_MARKER(this.index);
     },
   },
 };
