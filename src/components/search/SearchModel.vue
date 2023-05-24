@@ -18,17 +18,20 @@
       />
     </div>
     <div class="search-box">
-      <input
-        type="text"
-        class="input-search"
-        placeholder="친구의 아이디를 검색해보세요..."
-      />
-      <button class="btn-search">
-        <font-awesome-icon
-          icon="fa-solid fa-magnifying-glass"
-          style="color: #000000"
+      <form>
+        <input
+          type="text"
+          class="input-search"
+          placeholder="친구의 아이디를 검색해보세요..."
+          v-model="keyword"
         />
-      </button>
+        <button class="btn-search" @click="sendKeyword">
+          <font-awesome-icon
+            icon="fa-solid fa-magnifying-glass"
+            style="color: #000000"
+          />
+        </button>
+      </form>
     </div>
   </div>
 </template>
@@ -41,7 +44,7 @@ export default {
   components: {},
   data() {
     return {
-      message: "",
+      keyword: "",
     };
   },
   computed: {
@@ -52,6 +55,10 @@ export default {
     ...mapMutations(modalStore, ["SET_IS_MODAL_OPEN"]),
     closeModal() {
       this.SET_IS_MODAL_OPEN(false);
+    },
+    sendKeyword() {
+      this.SET_IS_MODAL_OPEN(false);
+      this.$router.push({ path: `/search?keyword=${this.keyword}` });
     },
   },
 };
