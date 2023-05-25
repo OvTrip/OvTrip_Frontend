@@ -41,7 +41,7 @@ export default {
     loadScript() {
       const script = document.createElement("script");
       script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?appkey=b485b131434be251ad56744ef70903b7&autoload=false&libraries=services";
+        "//dapi.kakao.com/v2/maps/sdk.js?appkey=be18b756880be5f8c0abc5fe02127cda&autoload=false&libraries=services";
       //script가 loading이 되면 지도를 출력하도록 구현
       script.onload = () => kakao.maps.load(this.loadMap);
 
