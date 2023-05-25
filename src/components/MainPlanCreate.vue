@@ -13,31 +13,18 @@
           </div>
           <div class="col-md-6">
             <div class="row no-margin">
-              <div class="col-md-5">
-                <div class="form-group">
-                  <span class="form-label">Check In</span>
-                  <input class="form-control" type="date" required="" />
-                  <span class="after"></span>
-                </div>
-              </div>
-              <div class="col-md-5">
-                <div class="form-group">
-                  <span class="form-label">Check out</span>
-                  <input class="form-control" type="date" required="" />
-                  <span class="after"></span>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <span class="form-label">Guests</span>
-                  <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                  </select>
-                  <span class="select-arrow"></span>
-                </div>
-              </div>
+              <date-picker
+                v-model="selectedDate"
+                range
+                :lang="lang"
+                :placeholder="placeholder"
+                :clearable="false"
+                @close="confirmDate"
+              >
+                <i slot="icon-calendar">
+                  <font-awesome-icon icon="fa-regular fa-calendar-days" />
+                </i>
+              </date-picker>
             </div>
           </div>
           <div class="col-md-3">
@@ -52,12 +39,36 @@
 </template>
 
 <script>
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/scss/index.scss";
+// import moment from "moment";
 export default {
   name: "MainPlanCreate",
-  components: {},
+  components: { DatePicker },
   data() {
     return {
-      message: "",
+      selectedDate: [],
+      lang: {
+        days: ["일", "월", "화", "수", "목", "금", "토"],
+        months: [
+          "1월",
+          "2월",
+          "3월",
+          "4월",
+          "5월",
+          "6월",
+          "7월",
+          "8월",
+          "9월",
+          "10월",
+          "11월",
+          "12월",
+        ],
+        yearFormat: "YYYY년", //달력 최상단 년도 표시 2023 -> 2023년
+        monthFormat: "MM월", //달력 최상단 월 표시 May -> 05월
+        monthBeforeYear: false, //달력 최상단 순서 05월 2023년 -> 2023년 05월
+      },
+      placeholder: "여행 일정을 설정해주세요",
     };
   },
   created() {},
@@ -65,7 +76,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 * {
   box-sizing: border-box;
 }
@@ -227,5 +238,18 @@ input[type="date"] {
   font-size: 16px !important;
   font-weight: 700 !important;
   color: black !important;
+}
+::v-deep {
+  .mx-input {
+    border: none;
+    outline: none;
+    -webkit-box-shadow: none;
+    font-weight: bold;
+    font-family: Pretendard;
+    font-size: 16px;
+  }
+  .mx-datepicker {
+    width: inherit;
+  }
 }
 </style>
