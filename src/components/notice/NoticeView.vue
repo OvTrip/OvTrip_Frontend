@@ -10,10 +10,11 @@
         />
       </div>
       <div class="table-container">
-        <div class="subject">글제목</div>
-        <div class="content">글내용<br />내용</div>
+        <div class="subject">{{ notice.subject }}</div>
+        <div class="writer">{{ notice.userName }}</div>
+        <div class="content">{{ notice.content }}</div>
         <div class="footer">
-          <button class="btn-list">목록</button>
+          <a href="/notice/list" class="btn-list">목록</a>
         </div>
       </div>
     </div>
@@ -21,15 +22,37 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "NoticeView",
   components: {},
   data() {
     return {
-      message: "",
+      notice: {
+        ariticleNo: "",
+        subject: "",
+        userName: "",
+        content: "",
+      },
     };
   },
-  created() {},
+  async created() {
+    let accessToken = sessionStorage.getItem("access-token");
+    let articleno = this.$route.params.articleno;
+    await axios
+      .get(`http://localhost:8080/notice/${articleno}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((response) => {
+        this.notice.articleNo = response.data.articleNo;
+        this.notice.subject = response.data.subject;
+        this.notice.userName = response.data.userName;
+        this.notice.content = response.data.content;
+      });
+  },
   methods: {},
 };
 </script>
@@ -43,6 +66,8 @@ export default {
 a {
   text-decoration: none;
   color: black;
+  padding: 0px;
+  margin: 0px;
 }
 .notice-container {
   width: 80%;
@@ -79,7 +104,7 @@ a {
 }
 
 .footer {
-  padding: 15px 20px 10px;
+  padding: 20px 20px 10px;
   text-align: right;
 }
 .btn-list {
@@ -90,6 +115,12 @@ a {
   border-radius: 4px;
 }
 
+.writer {
+  padding: 10px 20px 10px;
+  border-bottom: 1px solid #e6e6e6;
+  text-align: right;
+  font-weight: 500;
+}
 .btn-list:active {
   transform: scale(0.95);
 }

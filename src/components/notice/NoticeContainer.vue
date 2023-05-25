@@ -18,118 +18,11 @@
           <thead>
             <tr>
               <th scope="col">내용</th>
-              <th scope="col">등록일</th>
+              <th scope="col">작성자</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td class="table-subject">
-                <div class="inner_cell">
-                  <span>
-                    <a href="/notice/view"> 개인정보 처리방침 개정안내 </a>
-                  </span>
-                </div>
-              </td>
-              <td><div class="inner_cell">2023-05-18</div></td>
-            </tr>
-            <tr>
-              <td class="table-subject">
-                <div class="inner_cell">
-                  <span>
-                    <a href="#"> 개인정보 처리방침 개정안내 </a>
-                  </span>
-                </div>
-              </td>
-              <td><div class="inner_cell">2023-05-18</div></td>
-            </tr>
-
-            <tr>
-              <td class="table-subject">
-                <div class="inner_cell">
-                  <span>
-                    <a href="#"> 개인정보 처리방침 개정안내 </a>
-                  </span>
-                </div>
-              </td>
-              <td><div class="inner_cell">2023-05-18</div></td>
-            </tr>
-
-            <tr>
-              <td class="table-subject">
-                <div class="inner_cell">
-                  <span>
-                    <a href="#"> 개인정보 처리방침 개정안내 </a>
-                  </span>
-                </div>
-              </td>
-              <td><div class="inner_cell">2023-05-18</div></td>
-            </tr>
-
-            <tr>
-              <td class="table-subject">
-                <div class="inner_cell">
-                  <span>
-                    <a href="#"> 개인정보 처리방침 개정안내 </a>
-                  </span>
-                </div>
-              </td>
-              <td><div class="inner_cell">2023-05-18</div></td>
-            </tr>
-
-            <tr>
-              <td class="table-subject">
-                <div class="inner_cell">
-                  <span>
-                    <a href="#"> 개인정보 처리방침 개정안내 </a>
-                  </span>
-                </div>
-              </td>
-              <td><div class="inner_cell">2023-05-18</div></td>
-            </tr>
-
-            <tr>
-              <td class="table-subject">
-                <div class="inner_cell">
-                  <span>
-                    <a href="#"> 개인정보 처리방침 개정안내 </a>
-                  </span>
-                </div>
-              </td>
-              <td><div class="inner_cell">2023-05-18</div></td>
-            </tr>
-
-            <tr>
-              <td class="table-subject">
-                <div class="inner_cell">
-                  <span>
-                    <a href="#"> 개인정보 처리방침 개정안내 </a>
-                  </span>
-                </div>
-              </td>
-              <td><div class="inner_cell">2023-05-18</div></td>
-            </tr>
-
-            <tr>
-              <td class="table-subject">
-                <div class="inner_cell">
-                  <span>
-                    <a href="#"> 개인정보 처리방침 개정안내 </a>
-                  </span>
-                </div>
-              </td>
-              <td><div class="inner_cell">2023-05-18</div></td>
-            </tr>
-
-            <tr>
-              <td class="table-subject">
-                <div class="inner_cell">
-                  <span>
-                    <a href="#"> 개인정보 처리방침 개정안내 </a>
-                  </span>
-                </div>
-              </td>
-              <td><div class="inner_cell">2023-05-18</div></td>
-            </tr>
+          <tbody v-for="notice in noticeList" :key="notice.articleNo">
+            <notice-container-item :notice="notice" />
           </tbody>
         </table>
       </div>
@@ -138,15 +31,27 @@
 </template>
 
 <script>
+import axios from "axios";
+import NoticeContainerItem from "./NoticeContainerItem.vue";
+
 export default {
   name: "NoticeContainer",
-  components: {},
+  components: { NoticeContainerItem },
   data() {
     return {
-      message: "",
+      noticeList: [],
     };
   },
-  created() {},
+  async created() {
+    let accessToken = sessionStorage.getItem("access-token");
+    await axios
+      .get("http://localhost:8080/notice", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((response) => (this.noticeList = response.data));
+  },
   methods: {},
 };
 </script>
