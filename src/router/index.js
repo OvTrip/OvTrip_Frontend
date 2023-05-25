@@ -22,42 +22,50 @@ const routes = [
   {
     path: "/plan",
     name: "plan",
-    component: PlanView,
+    component: PlanView
   },
   {
-    path: "/login",
-    name: "login",
-    component: LoginView,
+    path: '/login',
+    name: 'login',
+    component: LoginView
   },
   {
-    path: "/signup",
-    name: "signup",
-    component: SignUpView,
+    path: '/signup',
+    name: 'signup',
+    component: SignUpView
   },
   {
-    path: "/password",
-    name: "password",
-    component: ForgotPassword,
+    path: '/password',
+    name: 'password',
+    component: ForgotPassword
   },
   {
-    path: "/oauth/kakao/callback",
-    name: "loginCallBack",
-    component: LoginCallBack,
+    path: '/oauth/kakao/callback',
+    name: 'loginCallBack',
+    component: LoginCallBack
   },
   {
-    path: "/mypage",
-    name: "mypage",
-    component: AppMypage,
+    path: '/mypage',
+    name: 'mypage',
+    component: AppMypage
   },
   {
-    path: "/oauth/naver",
-    name: "naverLoginCallBack",
-    component: NaverLoginCallBack,
+    path: '/oauth/naver',
+    name: 'naverLoginCallBack',
+    component: NaverLoginCallBack
   },
   {
     path: "/notice",
     name: "notice",
     component: AppNotice,
+    redirect: "/notice/list",
+    children: [
+      {
+        path: "list",
+        name: "noticelist",
+        component: () => import("@/components/notice/NoticeContainer"),
+      },
+    ],
   },
   {
     path: "/search",

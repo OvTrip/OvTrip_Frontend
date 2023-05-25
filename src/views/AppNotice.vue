@@ -1,16 +1,16 @@
 <template>
   <div class="container">
     <the-nav-bar />
-    <notice-container />
+    <router-view />
   </div>
 </template>
 
 <script>
 import TheNavBar from "@/components/TheNavBar.vue";
-import NoticeContainer from "@/components/notice/NoticeContainer.vue";
+// import NoticeContainer from "@/components/notice/NoticeContainer.vue";
 export default {
   name: "AppNotice",
-  components: { TheNavBar, NoticeContainer },
+  components: { TheNavBar },
   data() {
     return {
       message: "",
