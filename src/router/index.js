@@ -20,7 +20,7 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/plan",
+    path: "/plan/:planno",
     name: "plan",
     component: PlanView
   },

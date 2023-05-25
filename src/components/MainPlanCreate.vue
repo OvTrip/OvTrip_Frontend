@@ -46,6 +46,7 @@
 import axios from "axios";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/scss/index.scss";
+import moment from "moment";
 export default {
   name: "MainPlanCreate",
   components: { DatePicker },
@@ -78,14 +79,23 @@ export default {
   created() {},
   methods: {
     async createPlan() {
+      let accessToken = sessionStorage.getItem("access-token");
       await axios
-        .post("http://localhost:8080/plan", {
-          startDate: this.selectedDate[0],
-          endDate: this.selectedDate[1],
-          region: this.$refs.region.value,
-        })
+        .post(
+          "http://localhost:8080/plan",
+          {
+            startDate: moment(this.selectedDate[0]).format("yyyy-MM-DD"),
+            endDate: moment(this.selectedDate[1]).format("yyyy-MM-DD"),
+            region: this.$refs.region.value,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
         .then((data) => {
-          console.log(data);
+          location.href = `/plan/${data.data}`;
         })
         .catch((err) => {
           console.log(err);
