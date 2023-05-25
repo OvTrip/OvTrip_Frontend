@@ -25,8 +25,13 @@ export default {
   },
   async created() {
     this.keyword = this.$route.query.keyword;
+    let accessToken = sessionStorage.getItem("access-token");
     await axios
-      .get(`http://localhost:8080/user/search?keyword=${this.keyword}`)
+      .get(`http://localhost:8080/user/search?keyword=${this.keyword}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
       .then(({ data }) => {
         this.userinfo = data;
       });
