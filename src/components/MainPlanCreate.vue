@@ -7,12 +7,18 @@
           <div class="col-md-3">
             <div class="form-group">
               <span class="form-label">Destination</span>
-              <input
-                ref="region"
-                class="form-control"
-                type="text"
-                placeholder="여행할 도시를 입력해주세요"
-              />
+              <div class="region-select-div">
+                <select class="region-select" name="region" required>
+                  <option value="region" disabled selected>지역을 선택해주세요</option>
+                  <option value="seoul">서울</option>
+                  <option value="incheon">인천</option>
+                  <option value="busan">대구</option>
+                  <option value="busan">대전</option>
+                  <option value="busan">광주</option>
+                  <option value="busan">울산</option>
+                  <option value="busan">부산</option>
+                </select>
+              </div>
               <span class="after"></span>
             </div>
           </div>
@@ -53,6 +59,7 @@ export default {
   data() {
     return {
       selectedDate: [],
+      region: "",
       lang: {
         days: ["일", "월", "화", "수", "목", "금", "토"],
         months: [
@@ -79,27 +86,31 @@ export default {
   created() {},
   methods: {
     async createPlan() {
-      let accessToken = sessionStorage.getItem("access-token");
-      await axios
-        .post(
-          "http://localhost:8080/plan",
-          {
-            startDate: moment(this.selectedDate[0]).format("yyyy-MM-DD"),
-            endDate: moment(this.selectedDate[1]).format("yyyy-MM-DD"),
-            region: this.$refs.region.value,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
+      if (this.region && this.selectedDate[0] && this.selectedDate[1]) {
+        let accessToken = sessionStorage.getItem("access-token");
+        await axios
+          .post(
+            "http://localhost:8080/plan",
+            {
+              startDate: moment(this.selectedDate[0]).format("yyyy-MM-DD"),
+              endDate: moment(this.selectedDate[1]).format("yyyy-MM-DD"),
+              region: this.$refs.region.value,
             },
-          }
-        )
-        .then((data) => {
-          location.href = `/plan/${data.data}`;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          )
+          .then((data) => {
+            location.href = `/plan/${data.data}`;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        alert("지역과 날짜를 선택해주세요");
+      }
     },
   },
 };
@@ -125,6 +136,19 @@ export default {
 form {
   display: block;
   margin-top: 0em;
+}
+
+.region-select-div {
+  width: 100%;
+}
+
+.region-select {
+  width: 100%;
+  height: 34px;
+}
+
+.region-select option[disabled] {
+  display: none;
 }
 
 .booking-form > form .row.no-margin {
