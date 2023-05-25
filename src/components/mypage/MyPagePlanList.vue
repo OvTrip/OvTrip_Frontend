@@ -1,23 +1,33 @@
 <template>
   <div class="container">
     <div class="row">
-      <my-page-plan-item />
+      <my-page-plan-item v-for="plan in planlist" :key="plan.planId" :plan="plan" />
     </div>
   </div>
 </template>
 
 <script>
 import MyPagePlanItem from "./MyPagePlanItem.vue";
+import axios from "axios";
 
 export default {
   name: "MyPagePlanList",
   components: { MyPagePlanItem },
   data() {
     return {
-      array: [1, 2, 3, 4],
+      planlist: [],
     };
   },
-  created() {},
+  async created() {
+    let accessToken = sessionStorage.getItem("access-token");
+    await axios
+      .get("http://localhost:8080/plan", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((response) => (this.planlist = response.data));
+  },
   methods: {},
 };
 </script>

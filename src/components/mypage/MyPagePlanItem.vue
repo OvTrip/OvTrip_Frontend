@@ -6,8 +6,8 @@
       class="fluid img-thumbnail"
     />
     <div class="plan-info">
-      <div class="plan-region">서울 여행</div>
-      <span class="plan-period">2023.05.23 ~ 2023.05.27</span>
+      <div class="plan-region">{{ plan.region }}</div>
+      <span class="plan-period">{{ plan.startDate }} ~ {{ plan.endDate }}</span>
     </div>
   </a>
 </template>
@@ -17,7 +17,7 @@ export default {
   name: "MyPagePlanItem",
   components: {},
   props: {
-    index: Number,
+    plan: Object,
   },
   data() {
     return {
