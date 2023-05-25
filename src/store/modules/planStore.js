@@ -8,7 +8,8 @@ const planStore = {
     searchInputText: "",
     planDate: null,
     courseDate: "",
-    planTitle:""
+    planTitle: "",
+    planinfo:[]
   },
   getters: {},
   mutations: {
@@ -42,6 +43,15 @@ const planStore = {
     SET_PLAN_TITLE(state, planTitle) {
       state.planTitle = planTitle;
     },
+    SET_VISIT_PLACE_LIST(state, visitPlaceList) {
+      state.visitPlaceList = visitPlaceList;
+    },
+    SET_PLAN_INFO(state, planinfo) {
+      state.planinfo = planinfo;
+    },
+    SET_MARKER_INITIALIZE(state) {
+      state.markerPosList = [];
+    }
   },
   actions: {},
 };

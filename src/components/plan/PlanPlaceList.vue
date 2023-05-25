@@ -24,13 +24,23 @@ export default {
   name: "PlanPlaceList",
   components: { PlanPlaceListItem, PlanPlaceSearchBar },
   computed: {
-    ...mapState(planStore, ["visitPlaceList"]),
+    ...mapState(planStore, ["visitPlaceList", "courseDate"]),
   },
   data() {
-    return {};
+    return {
+      visitDateList: [],
+    };
   },
   created() {},
-  methods: {},
+  methods: {
+    filteredList() {
+      if (this.selectedDay == "") {
+        this.visitDateList = this.visitPlaceList;
+      } else {
+        return this.planList.filter((dayItem) => dayItem.courseDate === this.courseDate);
+      }
+    },
+  },
 };
 </script>
 

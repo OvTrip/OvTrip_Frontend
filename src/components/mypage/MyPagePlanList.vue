@@ -26,7 +26,10 @@ export default {
           Authorization: `Bearer ${accessToken}`,
         },
       })
-      .then((response) => (this.planlist = response.data));
+      .then((response) => {
+        console.log(response.data);
+        this.planlist = response.data;
+      });
   },
   methods: {},
 };

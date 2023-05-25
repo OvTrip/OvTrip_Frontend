@@ -17,6 +17,7 @@ export default {
     markerPosList: {
       // immediate: true,
       handler(markerPosList) {
+        console.log("hi");
         this.setMarkers(markerPosList);
       },
     },
@@ -74,14 +75,15 @@ export default {
       this.markers = [];
       this.polyline.setMap(null);
       let linePath = [];
-      if (markerPosList.length) {
-        for (let i = 0; i < markerPosList.length; i++) {
+      if (this.markerPosList.length) {
+        for (let i = 0; i < this.markerPosList.length; i++) {
           const marker = new window.kakao.maps.Marker({
             position: markerPosList[i],
           });
           this.markers.push(marker);
         }
       }
+      console.log(this.markers);
       if (this.markers.length) {
         this.bounds = new kakao.maps.LatLngBounds();
         for (let i = 0; i < this.markers.length; i++) {

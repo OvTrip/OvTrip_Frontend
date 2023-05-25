@@ -7,7 +7,7 @@
       <div class="pin-number-div">
         <span>{{ index + 1 }}</span>
       </div>
-      <span>{{ visitPlace.place_name }}</span>
+      <span>{{ visitPlace.placeName }}</span>
     </div>
     <div class="selection-item-control-div">
       <button v-show="isShow" class="selection-item-control-btn" @click="removeItem">

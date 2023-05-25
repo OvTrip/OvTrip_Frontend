@@ -13,6 +13,7 @@
           @input="adjustInputWidth"
         />
       </div>
+      <div>{{ planinfo.startDate }} ~ {{ planinfo.endDate }}</div>
       <div class="date-picker-div">
         <font-awesome-icon icon="fa-regular fa-calendar-days" />
         <!-- format : 날짜 선택시 날짜 출력 형식 (05-23)변경 -->
@@ -42,12 +43,13 @@ import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/scss/index.scss";
 import moment from "moment";
 import { mapState, mapMutations } from "vuex";
+import axios from "axios";
 const planStore = "planStore";
 export default {
   name: "PlanTitle",
   components: { DatePicker },
   computed: {
-    ...mapState(planStore, ["planDate"]),
+    ...mapState(planStore, ["planDate", "planinfo"]),
   },
   watch: {
     planDate: {
@@ -89,9 +91,12 @@ export default {
       },
     };
   },
-  created() {},
+  created() {
+    this.rangeDate.start_date = new Date(this.planinfo.startDate);
+    this.rangeDate.end_date = new Date(this.planinfo.endDate);
+  },
   methods: {
-    ...mapMutations(planStore, ["SET_COURSE_DATE", "SET_PLAN_TITLE"]),
+    ...mapMutations(planStore, ["SET_COURSE_DATE", "SET_PLAN_TITLE", "SET_VISIT_PLACE_LIST"]),
     adjustInputWidth(e) {
       e.target.style.width = e.target.value.length + 1 + "ch";
 
@@ -102,29 +107,34 @@ export default {
     },
     getClasses(cellDate) {
       //기준 날짜
-      const cellDateVal = moment(cellDate).format("YYYYMMDD");
+      const cellDateVal = moment(cellDate).format("YYYY-MM-DD");
 
       // 주 시작점 & 종료점 class
-      if (cellDateVal === this.rangeDate.start_date || cellDateVal === this.rangeDate.end_date) {
+      if (cellDateVal === this.planinfo.startDate || cellDateVal === this.planinfo.endDate) {
         return "active";
       }
       // 중간영역 class
       if (
-        moment(cellDateVal).isAfter(this.rangeDate.start_date) &&
-        moment(cellDateVal).isBefore(this.rangeDate.end_date)
+        moment(cellDateVal).isAfter(this.planinfo.startDate) &&
+        moment(cellDateVal).isBefore(this.planinfo.endDate)
       ) {
         return "in-range";
       }
     },
     dislabedDate(date) {
       return (
-        moment(date).format("YYYYMMDD") < this.rangeDate.start_date ||
-        moment(date).format("YYYYMMDD") > this.rangeDate.end_date
+        moment(date).format("YYYY-MM-DD") < this.planinfo.startDate ||
+        moment(date).format("YYYY-MM-DD") > this.planinfo.endDate
       );
     },
-    pickCourseDate(item) {
+    async pickCourseDate(item) {
       this.courseDate = item;
       this.SET_COURSE_DATE(moment(item).format("yyyy-MM-DD"));
+      let date = moment(item).format("yyyy-MM-DD");
+      let planno = this.$route.params.planno;
+      await axios.get(`http://localhost:8080/plan/${planno}/course/${date}`).then((response) => {
+        this.SET_VISIT_PLACE_LIST(response.data);
+      });
     },
   },
 };
