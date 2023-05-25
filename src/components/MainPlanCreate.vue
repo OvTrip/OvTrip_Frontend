@@ -6,17 +6,23 @@
         <div class="row no-margin">
           <div class="col-md-3">
             <div class="form-group">
-              <span class="form-label">Destination</span>
               <div class="region-select-div">
-                <select ref="region" class="region-select" name="region" required>
-                  <option value="region" disabled selected>지역을 선택해주세요</option>
-                  <option value="seoul">서울</option>
-                  <option value="incheon">인천</option>
-                  <option value="busan">대구</option>
-                  <option value="busan">대전</option>
-                  <option value="busan">광주</option>
-                  <option value="busan">울산</option>
-                  <option value="busan">부산</option>
+                <select
+                  ref="region"
+                  class="region-select"
+                  name="region"
+                  required
+                >
+                  <option value="region" disabled selected>
+                    지역을 선택해주세요
+                  </option>
+                  <option value="서울">서울</option>
+                  <option value="인천">인천</option>
+                  <option value="대구">대구</option>
+                  <option value="대전">대전</option>
+                  <option value="광주">광주</option>
+                  <option value="울산">울산</option>
+                  <option value="부산">부산</option>
                 </select>
               </div>
               <span class="after"></span>
@@ -39,7 +45,9 @@
           </div>
           <div class="col-md-3">
             <div class="form-btn">
-              <button class="submit-btn" @click.prevent="createPlan">Check availability</button>
+              <button class="submit-btn" @click.prevent="createPlan">
+                Check availability
+              </button>
             </div>
           </div>
         </div>
@@ -88,7 +96,11 @@ export default {
     async createPlan() {
       if (!sessionStorage.getItem("access-token")) {
         this.$router.push({ name: "login" });
-      } else if (this.$refs.region.value && this.selectedDate[0] && this.selectedDate[1]) {
+      } else if (
+        this.$refs.region.value &&
+        this.selectedDate[0] &&
+        this.selectedDate[1]
+      ) {
         let accessToken = sessionStorage.getItem("access-token");
         await axios
           .post(
@@ -145,8 +157,17 @@ form {
 }
 
 .region-select {
+  margin-top: 4px;
   width: 100%;
-  height: 34px;
+  height: 60px;
+  border: none;
+  background: white;
+  border-radius: 8px;
+  font-weight: bold;
+  font-family: Pretendard;
+  font-size: 16px;
+  padding: 10px;
+  color: #555;
 }
 
 .region-select option[disabled] {
@@ -212,7 +233,8 @@ form {
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  -webkit-transition: border-color ease-in-out 0.15s,
+    -webkit-box-shadow ease-in-out 0.15s;
   -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
@@ -302,9 +324,13 @@ input[type="date"] {
     font-weight: bold;
     font-family: Pretendard;
     font-size: 16px;
+    padding: 30px;
+    color: #555;
   }
   .mx-datepicker {
-    width: inherit;
+    width: 100%;
+    height: 125px;
+    padding: 30px;
   }
 }
 </style>
