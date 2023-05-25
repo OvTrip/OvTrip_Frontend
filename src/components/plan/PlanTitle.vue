@@ -16,6 +16,7 @@
           placeholder="Enter a trip name"
           class="title-input"
           @input="adjustInputWidth"
+          @keyup.enter="titleSubmit"
         />
       </div>
       <div class="plan-date">
@@ -107,6 +108,7 @@ export default {
     // this.rangeDate.start_date = new Date(this.planinfo.startDate);
     // this.rangeDate.end_date = new Date(this.planinfo.endDate);
     // this.SET_COURSE_DATE(this.rangeDate.start_date);
+    this.title = this.planinfo.planTitle;
   },
   methods: {
     ...mapMutations(planStore, [
@@ -166,6 +168,13 @@ export default {
             });
           }
         });
+    },
+    async titleSubmit() {
+      let planno = this.$route.params.planno;
+      await axios.post(`http://localhost:8080/plan/title`, {
+        planId: planno,
+        title: this.title,
+      });
     },
   },
 };

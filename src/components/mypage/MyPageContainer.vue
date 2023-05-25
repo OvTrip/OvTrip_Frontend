@@ -20,7 +20,7 @@
               </div>
               <div class="user-info">
                 <div>{{ userInfo.userNickname }}</div>
-                <div class="follow-info">여행 1 팔로워 0 팔로잉 0</div>
+                <div class="follow-info">팔로워 0 팔로잉 0</div>
               </div>
             </div>
             <div class="card-body" style="padding: 1.5rem !important">

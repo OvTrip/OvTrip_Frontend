@@ -33,14 +33,19 @@ import MainFestivalSearchBar from "./MainFestivalSearchBar.vue";
 import MainAttractionItem from "./MainAttractionItem.vue";
 export default {
   name: "MainFestival",
-  components: { VueperSlides, VueperSlide, MainFestivalSearchBar, MainAttractionItem },
+  components: {
+    VueperSlides,
+    VueperSlide,
+    MainFestivalSearchBar,
+    MainAttractionItem,
+  },
   data: () => ({
     slides: [
-      { image: require("@/assets/images/seoul.jpg") },
-      { image: require("@/assets/images/jeju.jpg") },
-      { image: require("@/assets/images/busan.jpg") },
-      { image: require("@/assets/images/seoul2.jpg") },
-      { image: require("@/assets/images/seoul3.jpg") },
+      { image: require("@/assets/images/seoul.jpg"), title: "서울" },
+      { image: require("@/assets/images/jeju.jpg"), title: "제주" },
+      { image: require("@/assets/images/busan.jpg"), title: "부산" },
+      { image: require("@/assets/images/seoul2.jpg"), title: "서울" },
+      { image: require("@/assets/images/seoul3.jpg"), title: "서울" },
     ],
   }),
   created() {},

@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">#서울</h3>
+      <h3 class="card-title">#{{ images.title }}</h3>
     </div>
     <div class="card-body"><img :src="images.image" alt="" /></div>
   </div>
