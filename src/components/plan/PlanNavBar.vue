@@ -11,7 +11,13 @@
       />
     </div>
     <div class="navBtnDiv">
-      <button class="glow-on-hover" id="saveBtn" name="saveBtn" type="button" @click="savePlan">
+      <button
+        class="glow-on-hover"
+        id="saveBtn"
+        name="saveBtn"
+        type="button"
+        @click="savePlan"
+      >
         <div><font-awesome-icon icon="fa-solid fa-floppy-disk" /></div>
         <div>
           <span>Save</span>
@@ -55,9 +61,12 @@ export default {
   methods: {
     async savePlan() {
       console.log(this.visitPlaceList);
-      await axios.post(`http://localhost:8080/plan/${this.$route.params.planno}/course`, {
-        visitlist: this.visitPlaceList,
-      });
+      await axios.post(
+        `http://localhost:8080/plan/${this.$route.params.planno}/course`,
+        {
+          visitlist: this.visitPlaceList,
+        }
+      );
     },
   },
 };

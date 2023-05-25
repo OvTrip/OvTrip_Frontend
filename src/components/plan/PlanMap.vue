@@ -31,7 +31,9 @@ export default {
       markers: [],
     };
   },
-  created() {},
+  created() {
+    // console.log(this.markerPosList);
+  },
   mounted() {
     if (window.kakao && window.kakao.maps) {
       this.loadMap();
@@ -65,6 +67,7 @@ export default {
         strokeOpacity: 0.5, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
         strokeStyle: "solid", // 선의 스타일입니다
       });
+      this.setMarkers(this.markerPosList);
     },
     setMarkers(markerPosList) {
       if (this.markers.length) {
@@ -75,10 +78,13 @@ export default {
       this.markers = [];
       this.polyline.setMap(null);
       let linePath = [];
-      if (this.markerPosList.length) {
-        for (let i = 0; i < this.markerPosList.length; i++) {
+      if (markerPosList.length) {
+        for (let i = 0; i < markerPosList.length; i++) {
           const marker = new window.kakao.maps.Marker({
-            position: markerPosList[i],
+            position: new window.kakao.maps.LatLng(
+              markerPosList[i].latitude,
+              markerPosList[i].longitude
+            ),
           });
           this.markers.push(marker);
         }

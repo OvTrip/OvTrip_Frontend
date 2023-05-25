@@ -1,7 +1,12 @@
 <template>
   <div class="plan-title-container">
     <div class="plan-tilte-cover-div">
-      <img class="plan-title-img" src="@/assets/images/plan-title-cover.jpg" alt="" width="100%" />
+      <img
+        class="plan-title-img"
+        src="@/assets/images/plan-title-cover.jpg"
+        alt=""
+        width="100%"
+      />
     </div>
     <div class="plan-title-div">
       <div class="title-input-div">
@@ -13,7 +18,9 @@
           @input="adjustInputWidth"
         />
       </div>
-      <div>{{ planinfo.startDate }} ~ {{ planinfo.endDate }}</div>
+      <div class="plan-date">
+        {{ planinfo.startDate }} ~ {{ planinfo.endDate }}
+      </div>
       <div class="date-picker-div">
         <font-awesome-icon icon="fa-regular fa-calendar-days" />
         <!-- format : 날짜 선택시 날짜 출력 형식 (05-23)변경 -->
@@ -62,6 +69,11 @@ export default {
         this.SET_PLAN_TITLE(title);
       },
     },
+    planinfo: {
+      handler(planinfo) {
+        this.pickCourseDate(new Date(planinfo.startDate));
+      },
+    },
   },
   data() {
     return {
@@ -92,11 +104,18 @@ export default {
     };
   },
   created() {
-    this.rangeDate.start_date = new Date(this.planinfo.startDate);
-    this.rangeDate.end_date = new Date(this.planinfo.endDate);
+    // this.rangeDate.start_date = new Date(this.planinfo.startDate);
+    // this.rangeDate.end_date = new Date(this.planinfo.endDate);
+    // this.SET_COURSE_DATE(this.rangeDate.start_date);
   },
   methods: {
-    ...mapMutations(planStore, ["SET_COURSE_DATE", "SET_PLAN_TITLE", "SET_VISIT_PLACE_LIST"]),
+    ...mapMutations(planStore, [
+      "SET_COURSE_DATE",
+      "SET_PLAN_TITLE",
+      "SET_VISIT_PLACE_LIST",
+      "SET_MARKER_INITIALIZE",
+      "ADD_MARKER_POSITION",
+    ]),
     adjustInputWidth(e) {
       e.target.style.width = e.target.value.length + 1 + "ch";
 
@@ -110,7 +129,10 @@ export default {
       const cellDateVal = moment(cellDate).format("YYYY-MM-DD");
 
       // 주 시작점 & 종료점 class
-      if (cellDateVal === this.planinfo.startDate || cellDateVal === this.planinfo.endDate) {
+      if (
+        cellDateVal === this.planinfo.startDate ||
+        cellDateVal === this.planinfo.endDate
+      ) {
         return "active";
       }
       // 중간영역 class
@@ -132,15 +154,30 @@ export default {
       this.SET_COURSE_DATE(moment(item).format("yyyy-MM-DD"));
       let date = moment(item).format("yyyy-MM-DD");
       let planno = this.$route.params.planno;
-      await axios.get(`http://localhost:8080/plan/${planno}/course/${date}`).then((response) => {
-        this.SET_VISIT_PLACE_LIST(response.data);
-      });
+      await axios
+        .get(`http://localhost:8080/plan/${planno}/course/${date}`)
+        .then((response) => {
+          this.SET_VISIT_PLACE_LIST(response.data);
+          this.SET_MARKER_INITIALIZE();
+          for (let i = 0; i < response.data.length; i++) {
+            this.ADD_MARKER_POSITION({
+              latitude: response.data[i].latitude,
+              longitude: response.data[i].longitude,
+            });
+          }
+        });
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.plan-date {
+  margin-top: 10px;
+  margin-left: 5px;
+  text-align: left;
+  font-weight: 600;
+}
 .plan-title-container {
   width: 100%;
   height: 320px;

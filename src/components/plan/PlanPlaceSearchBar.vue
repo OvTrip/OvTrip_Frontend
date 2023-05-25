@@ -112,7 +112,7 @@ export default {
   margin-left: 5px;
 }
 .search-input-div {
-  width: calc(100% - 50px);
+  /* width: calc(100% - 50px); */
   letter-spacing: 1px;
   padding: 15px 15px 15px 20px;
   margin: 0px 10px 0px 10px;

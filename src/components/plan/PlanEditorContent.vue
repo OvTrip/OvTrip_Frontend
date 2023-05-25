@@ -23,7 +23,7 @@ export default {
 
 <style scoped>
 .editor-content-container {
-  width: calc(100% - 250px);
+  width: 100%;
   float: right;
 }
 </style>

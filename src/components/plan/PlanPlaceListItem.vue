@@ -1,5 +1,9 @@
 <template>
-  <div class="place-list-item-container" @mouseover="itemMouseOver" @mouseleave="itemMouseLeave">
+  <div
+    class="place-list-item-container"
+    @mouseover="itemMouseOver"
+    @mouseleave="itemMouseLeave"
+  >
     <div class="place-list-item-div">
       <div class="pin-icon-div">
         <img src="@/assets/images/map-pin.png" alt="" width="32px" />
@@ -10,7 +14,11 @@
       <span>{{ visitPlace.placeName }}</span>
     </div>
     <div class="selection-item-control-div">
-      <button v-show="isShow" class="selection-item-control-btn" @click="removeItem">
+      <button
+        v-show="isShow"
+        class="selection-item-control-btn"
+        @click="removeItem"
+      >
         <font-awesome-icon icon="fa-regular fa-trash-can" size="lg" />
       </button>
     </div>
@@ -35,7 +43,10 @@ export default {
   },
   created() {},
   methods: {
-    ...mapMutations(planStore, ["REMOVE_VISIT_PLACE", "REMOVE_MARKER_POSITION"]),
+    ...mapMutations(planStore, [
+      "REMOVE_VISIT_PLACE",
+      "REMOVE_MARKER_POSITION",
+    ]),
     itemMouseOver() {
       this.isShow = true;
     },
@@ -60,7 +71,7 @@ export default {
   font-weight: 700;
   font-family: "Pretendard";
   letter-spacing: 1px;
-  width: calc(100% - 50px);
+  width: 100%;
   padding: 15px 15px 15px 20px;
   margin: 10px 10px 0px 10px;
   border-radius: 10px;

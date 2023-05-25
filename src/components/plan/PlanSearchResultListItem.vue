@@ -3,7 +3,9 @@
     <span :class="'markerbg marker_' + index"></span>
     <div class="info">
       <h5>{{ searchResult.place_name }}</h5>
-      <span v-if="searchResult.road_address_name">{{ searchResult.road_address_name }}</span>
+      <span v-if="searchResult.road_address_name">{{
+        searchResult.road_address_name
+      }}</span>
       <span :class="{ jibun: searchResult.road_address_name }">{{
         searchResult.address_name
       }}</span>
@@ -46,13 +48,18 @@ export default {
     ]),
     addVisitPlace() {
       //위도(latitude) y, 경도(longitude) x
-      const markerPos = new window.kakao.maps.LatLng(this.searchResult.y, this.searchResult.x);
+      const markerPos = {
+        latitude: this.searchResult.y,
+        longitude: this.searchResult.x,
+      };
+      // new window.kakao.maps.LatLng(this.searchResult.y, this.searchResult.x);
       // const marker = new window.kakao.maps.Marker({
       //   position: markerPos,
       // });
+      console.log(this.searchResult);
       let visitPlace = {
         course_date: this.courseDate,
-        place_name: this.searchResult.place_name,
+        placeName: this.searchResult.place_name,
         place_url: this.searchResult.place_url,
         address_name: this.searchResult.address_name,
         road_address_name: this.searchResult.road_address_name,

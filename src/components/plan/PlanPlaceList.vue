@@ -37,7 +37,9 @@ export default {
       if (this.selectedDay == "") {
         this.visitDateList = this.visitPlaceList;
       } else {
-        return this.planList.filter((dayItem) => dayItem.courseDate === this.courseDate);
+        return this.planList.filter(
+          (dayItem) => dayItem.courseDate === this.courseDate
+        );
       }
     },
   },
@@ -47,7 +49,8 @@ export default {
 <style scoped>
 .place-list-container {
   bottom: 0;
-  width: calc(100% - 100px);
+  /* width: calc(100% - 100px); */
+  padding: 10px 60px;
 }
 #placeListTitle {
   text-align: left;
