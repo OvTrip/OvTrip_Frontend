@@ -7,7 +7,12 @@
           <div class="col-md-3">
             <div class="form-group">
               <span class="form-label">Destination</span>
-              <input class="form-control" type="text" placeholder="여행할 도시를 입력해주세요" />
+              <input
+                ref="region"
+                class="form-control"
+                type="text"
+                placeholder="여행할 도시를 입력해주세요"
+              />
               <span class="after"></span>
             </div>
           </div>
@@ -19,7 +24,6 @@
                 :lang="lang"
                 :placeholder="placeholder"
                 :clearable="false"
-                @close="confirmDate"
               >
                 <i slot="icon-calendar">
                   <font-awesome-icon icon="fa-regular fa-calendar-days" />
@@ -29,7 +33,7 @@
           </div>
           <div class="col-md-3">
             <div class="form-btn">
-              <button class="submit-btn" @click="$router.push('plan')">Check availability</button>
+              <button class="submit-btn" @click.prevent="createPlan">Check availability</button>
             </div>
           </div>
         </div>
@@ -39,9 +43,9 @@
 </template>
 
 <script>
+import axios from "axios";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/scss/index.scss";
-// import moment from "moment";
 export default {
   name: "MainPlanCreate",
   components: { DatePicker },
@@ -72,7 +76,22 @@ export default {
     };
   },
   created() {},
-  methods: {},
+  methods: {
+    async createPlan() {
+      await axios
+        .post("http://localhost:8080/plan", {
+          startDate: this.selectedDate[0],
+          endDate: this.selectedDate[1],
+          region: this.$refs.region.value,
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 
