@@ -1,7 +1,7 @@
 const planStore = {
   namespaced: true,
   state: {
-    markers: [],
+    markerPosList: [],
     searchResults: [],
     pagination: [],
     visitPlaceList: [],
@@ -11,12 +11,11 @@ const planStore = {
   },
   getters: {},
   mutations: {
-    ADD_MARKER(state, marker) {
-      state.markers.push(marker);
+    ADD_MARKER_POSITION(state, markerPos) {
+      state.markerPosList.push(markerPos);
     },
-    REMOVE_MARKER(state, index) {
-      state.markers[index].setMap(null);
-      state.markers.splice(index, 1);
+    REMOVE_MARKER_POSITION(state, index) {
+      state.markerPosList.splice(index, 1);
     },
     SET_SEARCH_RESULTS(state, searchResults) {
       state.searchResults = searchResults;

@@ -38,7 +38,7 @@ export default {
   created() {},
   methods: {
     ...mapMutations(planStore, [
-      "ADD_MARKER",
+      "ADD_MARKER_POSITION",
       "ADD_VISIT_PLACE",
       "SET_SEARCH_RESULTS",
       "SET_PAGINATION",
@@ -47,9 +47,9 @@ export default {
     addVisitPlace(courseDate) {
       //위도(latitude) y, 경도(longitude) x
       const markerPos = new window.kakao.maps.LatLng(this.searchResult.y, this.searchResult.x);
-      const marker = new window.kakao.maps.Marker({
-        position: markerPos,
-      });
+      // const marker = new window.kakao.maps.Marker({
+      //   position: markerPos,
+      // });
       let visitPlace = {
         course_date: courseDate,
         place_name: this.searchResult.place_name,
@@ -63,7 +63,7 @@ export default {
       this.SET_PAGINATION(null);
       this.CHANGE_SEARCH_INPUT_TEXT(null);
       this.ADD_VISIT_PLACE(visitPlace);
-      this.ADD_MARKER(marker);
+      this.ADD_MARKER_POSITION(markerPos);
     },
   },
 };

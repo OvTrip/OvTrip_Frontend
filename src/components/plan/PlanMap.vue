@@ -11,13 +11,13 @@ export default {
   name: "PlanMap",
   components: {},
   computed: {
-    ...mapState(planStore, ["markers"]),
+    ...mapState(planStore, ["markerPosList"]),
   },
   watch: {
-    markers: {
+    markerPosList: {
       // immediate: true,
-      handler(markers) {
-        this.setMarkers(markers);
+      handler(markerPosList) {
+        this.setMarkers(markerPosList);
       },
     },
   },
@@ -27,6 +27,7 @@ export default {
       bounds: null,
       polyline: null,
       linePath: [],
+      markers: [],
     };
   },
   created() {},
@@ -64,15 +65,29 @@ export default {
         strokeStyle: "solid", // 선의 스타일입니다
       });
     },
-    setMarkers(markers) {
+    setMarkers(markerPosList) {
+      if (this.markers.length) {
+        for (let i = 0; i < this.markers.length; i++) {
+          this.markers[i].setMap(null);
+        }
+      }
+      this.markers = [];
       this.polyline.setMap(null);
       let linePath = [];
-      if (markers.length) {
+      if (markerPosList.length) {
+        for (let i = 0; i < markerPosList.length; i++) {
+          const marker = new window.kakao.maps.Marker({
+            position: markerPosList[i],
+          });
+          this.markers.push(marker);
+        }
+      }
+      if (this.markers.length) {
         this.bounds = new kakao.maps.LatLngBounds();
-        for (let i = 0; i < markers.length; i++) {
-          markers[i].setMap(this.map);
-          this.bounds.extend(markers[i].getPosition());
-          linePath.push(markers[i].getPosition());
+        for (let i = 0; i < this.markers.length; i++) {
+          this.markers[i].setMap(this.map);
+          this.bounds.extend(this.markers[i].getPosition());
+          linePath.push(this.markers[i].getPosition());
         }
         this.polyline.setPath(linePath);
         this.map.setBounds(this.bounds);
