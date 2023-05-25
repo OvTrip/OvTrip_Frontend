@@ -1,5 +1,5 @@
 <template>
-  <li class="item" @click="addVisitPlace(courseDate)">
+  <li class="item" @click="addVisitPlace()">
     <span :class="'markerbg marker_' + index"></span>
     <div class="info">
       <h5>{{ searchResult.place_name }}</h5>
@@ -44,14 +44,14 @@ export default {
       "SET_PAGINATION",
       "CHANGE_SEARCH_INPUT_TEXT",
     ]),
-    addVisitPlace(courseDate) {
+    addVisitPlace() {
       //위도(latitude) y, 경도(longitude) x
       const markerPos = new window.kakao.maps.LatLng(this.searchResult.y, this.searchResult.x);
       // const marker = new window.kakao.maps.Marker({
       //   position: markerPos,
       // });
       let visitPlace = {
-        course_date: courseDate,
+        course_date: this.courseDate,
         place_name: this.searchResult.place_name,
         place_url: this.searchResult.place_url,
         address_name: this.searchResult.address_name,

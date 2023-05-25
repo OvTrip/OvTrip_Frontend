@@ -2,6 +2,7 @@
   <div class="side-bar-container">
     <date-picker
       v-model="selectedDate"
+      :value="selectedDate"
       range
       :lang="lang"
       :placeholder="placeholder"
@@ -20,6 +21,8 @@ import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/scss/index.scss";
 import moment from "moment";
 import { mapMutations } from "vuex";
+import axios from "axios";
+
 const planStore = "planStore";
 
 export default {
@@ -52,7 +55,21 @@ export default {
       placeholder: "여행 일정을 설정해주세요",
     };
   },
-  created() {},
+  async created() {
+    let accessToken = sessionStorage.getItem("access-token");
+    let planno = this.$route.params.planno;
+    await axios
+      .get(`http://localhost:8080/plan/${planno}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((response) => {
+        this.selectedDate[0] = new Date(response.data.startDate);
+        this.selectedDate[1] = new Date(response.data.endDate);
+        console.log(this.selectedDate);
+      });
+  },
   mounted() {},
   methods: {
     ...mapMutations(planStore, ["SET_PLAN_DATE"]),

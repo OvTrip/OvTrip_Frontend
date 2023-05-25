@@ -7,6 +7,7 @@
       <div class="title-input-div">
         <input
           type="text"
+          v-model="title"
           placeholder="Enter a trip name"
           class="title-input"
           @input="adjustInputWidth"
@@ -54,9 +55,15 @@ export default {
         this.rangeDate = planDate;
       },
     },
+    title: {
+      handler(title) {
+        this.SET_PLAN_TITLE(title);
+      },
+    },
   },
   data() {
     return {
+      title: "",
       rangeDate: null,
       courseDate: null,
       placeholder: "날짜를 선택하세요",
@@ -84,7 +91,7 @@ export default {
   },
   created() {},
   methods: {
-    ...mapMutations(planStore, ["SET_COURSE_DATE"]),
+    ...mapMutations(planStore, ["SET_COURSE_DATE", "SET_PLAN_TITLE"]),
     adjustInputWidth(e) {
       e.target.style.width = e.target.value.length + 1 + "ch";
 
@@ -117,7 +124,7 @@ export default {
     },
     pickCourseDate(item) {
       this.courseDate = item;
-      this.SET_COURSE_DATE(moment(item).format("yyyy-MM-dd"));
+      this.SET_COURSE_DATE(moment(item).format("yyyy-MM-DD"));
     },
   },
 };

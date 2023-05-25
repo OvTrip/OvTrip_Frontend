@@ -11,7 +11,7 @@
       />
     </div>
     <div class="navBtnDiv">
-      <button class="glow-on-hover" id="saveBtn" name="saveBtn" type="button">
+      <button class="glow-on-hover" id="saveBtn" name="saveBtn" type="button" @click="savePlan">
         <div><font-awesome-icon icon="fa-solid fa-floppy-disk" /></div>
         <div>
           <span>Save</span>
@@ -28,16 +28,38 @@
 </template>
 
 <script>
+import axios from "axios";
+import { mapState } from "vuex";
+const planStore = "planStore";
+
+// markerPosList: [],
+//     searchResults: [],
+//     pagination: [],
+//     visitPlaceList: [],
+//     searchInputText: "",
+//     planDate: null,
+//     courseDate: "",
+//     planTitle:""
 export default {
   name: "PlanNavBar",
   components: {},
+  computed: {
+    ...mapState(planStore, ["planTitle", "visitPlaceList"]),
+  },
   data() {
     return {
       message: "",
     };
   },
   created() {},
-  methods: {},
+  methods: {
+    async savePlan() {
+      console.log(this.visitPlaceList);
+      await axios.post(`http://localhost:8080/plan/${this.$route.params.planno}/course`, {
+        visitlist: this.visitPlaceList,
+      });
+    },
+  },
 };
 </script>
 

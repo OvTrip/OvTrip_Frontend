@@ -8,6 +8,7 @@ const planStore = {
     searchInputText: "",
     planDate: null,
     courseDate: "",
+    planTitle:""
   },
   getters: {},
   mutations: {
@@ -37,6 +38,9 @@ const planStore = {
     },
     SET_PLAN_DATE(state, planDate) {
       state.planDate = planDate;
+    },
+    SET_PLAN_TITLE(state, planTitle) {
+      state.planTitle = planTitle;
     },
   },
   actions: {},
