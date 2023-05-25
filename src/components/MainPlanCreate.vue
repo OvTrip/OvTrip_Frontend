@@ -8,7 +8,7 @@
             <div class="form-group">
               <span class="form-label">Destination</span>
               <div class="region-select-div">
-                <select class="region-select" name="region" required>
+                <select ref="region" class="region-select" name="region" required>
                   <option value="region" disabled selected>지역을 선택해주세요</option>
                   <option value="seoul">서울</option>
                   <option value="incheon">인천</option>
@@ -86,7 +86,9 @@ export default {
   created() {},
   methods: {
     async createPlan() {
-      if (this.region && this.selectedDate[0] && this.selectedDate[1]) {
+      if (!sessionStorage.getItem("access-token")) {
+        this.$router.push({ name: "login" });
+      } else if (this.$refs.region.value && this.selectedDate[0] && this.selectedDate[1]) {
         let accessToken = sessionStorage.getItem("access-token");
         await axios
           .post(
