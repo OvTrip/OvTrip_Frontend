@@ -27,10 +27,8 @@ export default {
 
 <style scoped>
 .container {
-  /* background: yellow; */
   width: 80vw;
   margin: 0 auto;
-  /* padding: 0 240px; */
   display: flex;
   flex-direction: column !important;
 }
