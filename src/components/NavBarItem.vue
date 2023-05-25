@@ -1,9 +1,15 @@
 <template>
   <div class="d-flex align-items-center">
+    <search-model v-if="isModalOpen" />
     <div id="menu">
       <ul>
         <li>
-          <a href="#"><font-awesome-icon icon="fa-solid fa-magnifying-glass" size="xl" /></a>
+          <a href="/notice">공지사항</a>
+        </li>
+        <li>
+          <a @click.prevent="searchModal"
+            ><font-awesome-icon icon="fa-solid fa-magnifying-glass" size="xl"
+          /></a>
         </li>
         <li>
           <a href="/login"
@@ -24,27 +30,34 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
+import SearchModel from "./search/SearchModel.vue";
 
 const userStore = "userStore";
+const modalStore = "modalStore";
 
 export default {
   name: "NavBarItem",
-  components: {},
+  components: { SearchModel },
   data() {
     return {
-      message: "",
+      openModal: false,
     };
   },
   computed: {
     ...mapState(userStore, ["userInfo"]),
+    ...mapState(modalStore, ["isModalOpen"]),
   },
   created() {},
   methods: {
     ...mapActions(userStore, ["logoutUser"]),
+    ...mapMutations(modalStore, ["SET_IS_MODAL_OPEN"]),
     onClickLogout() {
       this.logoutUser();
       if (this.$route.path !== "/") this.$router.push("/");
+    },
+    searchModal() {
+      this.SET_IS_MODAL_OPEN(true);
     },
   },
 };
