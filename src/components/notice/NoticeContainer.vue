@@ -26,7 +26,7 @@
               <td class="table-subject">
                 <div class="inner_cell">
                   <span>
-                    <a href="#"> 개인정보 처리방침 개정안내 </a>
+                    <a href="/notice/view"> 개인정보 처리방침 개정안내 </a>
                   </span>
                 </div>
               </td>
